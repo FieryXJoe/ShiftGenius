@@ -43,9 +43,9 @@ namespace ShiftGenius.Controllers
                 return View(model);
             }
 
-            bool isValidUser = Basic_Functions.checkLoginCredentials(model.Email, model.Password);
+            int userId = Basic_Functions.checkLoginCredentials(model.Email, model.Password);
 
-            if (!isValidUser)
+            if (userId == -1)
             {
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return View(model);
@@ -53,7 +53,10 @@ namespace ShiftGenius.Controllers
 
             var userClaims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, model.Email)
+                //Add a claim to store userID
+                new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+                new Claim(ClaimTypes.Name, Basic_Functions.getEmployeeNameByID(userId))
+                
             };
 
             var claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);

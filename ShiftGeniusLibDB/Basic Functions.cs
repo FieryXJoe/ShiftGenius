@@ -64,19 +64,33 @@ namespace ShiftGeniusLibDB
                 context.SaveChanges();
             }
         }
-        public static bool checkLoginCredentials(string email, string password)
+        public static int checkLoginCredentials(string email, string password)
         {
-            //if an employee with the given email and password exists, return true
             using (var context = new ShiftGeniusContext())
             {
                 var employee = context.Employees.Where(e => e.Email == email && e.Password == password).FirstOrDefault();
                 if (employee != null)
                 {
-                    return true;
+                    return employee.EmployeeId;
                 }
                 else
                 {
-                    return false;
+                    return -1;
+                }
+            }
+        }
+        public static string getEmployeeNameByID(int id)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var employee = context.Employees.Where(e => e.EmployeeId == id).FirstOrDefault();
+                if (employee != null)
+                {
+                    return employee.Name;
+                }
+                else
+                {
+                    return "";
                 }
             }
         }
