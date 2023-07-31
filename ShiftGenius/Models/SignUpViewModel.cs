@@ -1,10 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace ShiftGenius.Models
 {
     // SignUpViewModel.cs
     public class SignUpViewModel
     {
+        [Required(ErrorMessage = "Please enter your name.")]
+        [RegularExpression(@"^([a-zA-Z]+)\s([a-zA-Z]+)$", ErrorMessage = "Name must include both a first name and a last name, separated by a space. Special characters and numbers are not allowed.")]
+        public string Name { get; set; }
+
         [Required(ErrorMessage = "Please enter your email.")]
         [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
         public string Email { get; set; }
@@ -18,5 +23,4 @@ namespace ShiftGenius.Models
         [Compare(nameof(Password), ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
     }
-
 }

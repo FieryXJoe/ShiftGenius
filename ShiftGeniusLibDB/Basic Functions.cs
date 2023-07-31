@@ -94,5 +94,43 @@ namespace ShiftGeniusLibDB
                 }
             }
         }
+        public static bool employeeWithEmailExists(string email)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var employee = context.Employees.Where(e => e.Email == email).FirstOrDefault();
+                if (employee != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        public static bool AddEmployee(string name, string email, string password)
+        {
+            if (employeeWithEmailExists(email))
+            {
+                return false;
+            }
+            else
+            {
+                using (var context = new ShiftGeniusContext())
+                {
+                    var employee = new Employee
+                    {
+                        Name = name,
+                        Email = email,
+                        Password = password
+                    };
+                    context.Employees.Add(employee);
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }

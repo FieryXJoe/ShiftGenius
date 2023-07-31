@@ -91,9 +91,19 @@ namespace ShiftGenius.Controllers
                 return View(model);
             }
 
-            // TO-DO: Adds a new user to the DB. Insert Logic here.
+            // Assuming you have a UserService class with an AddUser method.
+            // Please replace "UserService" and "AddUser" with your actual class and method names.
+            bool result = Basic_Functions.AddEmployee(model.Name, model.Email, model.Password);
 
-            return RedirectToAction("Index", "Home");
+            if (result)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("", "There was an error registering the user. Please try again.");
+                return View(model);
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
