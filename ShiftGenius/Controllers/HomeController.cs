@@ -3,6 +3,9 @@ using ShiftGenius.Models;
 using System.Diagnostics;
 
 using ShiftGeniusLibDB;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace ShiftGenius.Controllers
 {
@@ -31,7 +34,6 @@ namespace ShiftGenius.Controllers
             return View();
         }
 
-        // POST: Home/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -41,15 +43,33 @@ namespace ShiftGenius.Controllers
                 return View(model);
             }
 
-            if (Basic_Functions.checkLoginCredentials(model.Email, model.Password))
+            bool isValidUser = Basic_Functions.checkLoginCredentials(model.Email, model.Password);
+
+            if (!isValidUser)
             {
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                ModelState.AddModelError("", "Invalid login attempt.");
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return View(model);
             }
+
+            var userClaims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, model.Email)
+            };
+
+            var claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var authProperties = new AuthenticationProperties();
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         [HttpGet]
