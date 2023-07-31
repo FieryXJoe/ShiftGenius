@@ -123,7 +123,8 @@ namespace ShiftGeniusLibDB
                     {
                         Name = name,
                         Email = email,
-                        Password = password
+                        Password = password,
+                        OrganizationId = null
                     };
                     context.Employees.Add(employee);
                     context.SaveChanges();

@@ -90,9 +90,7 @@ namespace ShiftGenius.Controllers
             {
                 return View(model);
             }
-
-            // Assuming you have a UserService class with an AddUser method.
-            // Please replace "UserService" and "AddUser" with your actual class and method names.
+            
             bool result = Basic_Functions.AddEmployee(model.Name, model.Email, model.Password);
 
             if (result)
