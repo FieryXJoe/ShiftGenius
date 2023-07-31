@@ -2,6 +2,8 @@
 using ShiftGenius.Models;
 using System.Diagnostics;
 
+using ShiftGeniusLibDB;
+
 namespace ShiftGenius.Controllers
 {
     public class HomeController : Controller
@@ -21,6 +23,33 @@ namespace ShiftGenius.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        // POST: Home/Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (Basic_Functions.checkLoginCredentials(model.Email, model.Password))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Invalid login attempt.");
+                return View(model);
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
