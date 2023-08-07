@@ -8,16 +8,17 @@ namespace ShiftGenius.Controllers
     {
         public IActionResult Index()
         {
-            Employee employee = GetCurrentEmployee(); // Replace with logic
+            //Employee employee = GetCurrentEmployee(); // Replace with logic
 
             // Create a ViewModel to hold the data
-            var viewModel = new EmployeeHomeViewModel
-            {
-                EmployeeName = employee.Name,
-                Schedule = GetEmployeeSchedule(employee.Id), // Replace with logic
-            };
+            //var viewModel = new EmployeeHomeViewModel
+            //{
+            //    EmployeeName = employee.Name,
+            //    Schedule = GetEmployeeSchedule(employee.Id), // Replace with logic
+            //};
 
-            return View(viewModel);
+            //return View(viewModel);
+            return View();
         }
 
     }
