@@ -16,7 +16,7 @@ namespace ShiftGenius.Controllers
             {
                 // Process the time-off request, save to database, etc.
                 // Redirect to a confirmation page or back to the home page
-                return RedirectToAction("EmployeeHome");
+                return RedirectToAction("Index");
             }
 
             return View(model); // Return to the view with validation errors
