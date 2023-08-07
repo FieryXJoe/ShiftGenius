@@ -1,19 +1,65 @@
 ﻿@page
 @model EmployeeTimeOffRequestViewModel
 
-<h2>Request Time Off</h2>
-<form method="post">
-    <div class="form-group">
-        <label for="startDate">Start Date:</label>
-        <input type="date" class="form-control" id="startDate" name="StartDate">
+@section Styles {
+    <style>
+        .employee-time-off-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: #343F4B;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        /* Additional styles for form elements */
+        .form-group label {
+            color: white;
+        }
+
+        .form-control {
+            background-color: #212529;
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: #343F4B;
+            border-color: #343F4B;
+        }
+
+        .btn-secondary {
+            background-color: #6C757D;
+            border-color: #6C757D;
+        }
+    </style>
+}
+
+<div class="employee-time-off-container">
+    <h2>Request Time Off</h2>
+    <div class="form-container">
+        <form method="post">
+            <div class="form-group">
+                <label for="startDate">Start Date:</label>
+                <input type="date" class="form-control" id="startDate" name="StartDate">
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date:</label>
+                <input type="date" class="form-control" id="endDate" name="EndDate">
+            </div>
+            <div class="form-group">
+                <label for="type">Type:</label>
+                <select class="form-control" id="type" name="Type">
+                    <option value="Unpaid">Unpaid Time Off</option>
+                    <option value="Paid">Paid Time Off</option>
+                    <option value="Bereavement">Bereavement</option>
+                    <option value="Other">Other (Specify with Manager)</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Request</button>
+            <a href="/employee/index" class="btn btn-secondary">Back</a>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="endDate">End Date:</label>
-        <input type="date" class="form-control" id="endDate" name="EndDate">
-    </div>
-    <div class="form-group">
-        <label for="reason">Reason:</label>
-        <textarea class="form-control" id="reason" name="Reason" rows="4"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit Request</button>
-</form>
+</div>
