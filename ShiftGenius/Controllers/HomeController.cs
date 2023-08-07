@@ -65,7 +65,10 @@ namespace ShiftGenius.Controllers
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-            return RedirectToAction(nameof(Index));
+            if (Basic_Functions.isManager(userId))
+                return RedirectToAction("Index", "Manager");
+            else
+                return RedirectToAction("Index", "Employee");
         }
 
         [HttpPost]
@@ -95,7 +98,7 @@ namespace ShiftGenius.Controllers
 
             if (result)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Employee");
             }
             else
             {
