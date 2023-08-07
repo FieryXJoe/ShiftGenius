@@ -3,6 +3,52 @@
 *@
 @{
 }
-<div>
-    Welcome Employee
-</div>
+
+@model EmployeeHomeViewModel
+
+@section Styles {
+    <style>
+        /** this css is trying to base off our prototype and _layout.cshtml. Feel free to change this. */
+        .employee-home-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .schedule-banner {
+            background-color: #343F4B;
+            color: white;
+            padding: 20px;
+        }
+
+        .table-calendar {
+            background-color: #343F4B;
+            color: white;
+        }
+    </style>
+}
+<div class="employee-home-container">
+    @*Displaying the user that is logged in, this should probably also take into account if its a manager or employee, idk.*@
+    <div>
+        Welcome Employee
+    </div>
+    @*<h2>Welcome @Model.EmployeeName</h2>*@
+    <hr />
+    <div class="schedule-banner">
+        <table class="table table-bordered table-calendar">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Schedule</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var entry in Model.Schedule)
+                {
+                <tr>
+                    <td>@entry.DayOfWeek</td>
+                    <td>@entry.StartTime - @entry.EndTime</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
