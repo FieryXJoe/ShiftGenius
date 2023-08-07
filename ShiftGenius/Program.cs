@@ -12,6 +12,14 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
                 options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Home/Login");
             });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("IsManager", policy =>
+    {
+        policy.RequireClaim("IsManager", "true");
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

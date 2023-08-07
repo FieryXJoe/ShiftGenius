@@ -20,7 +20,18 @@ namespace ShiftGenius.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            if (User.HasClaim("IsManager", "true"))
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            else if (User.HasClaim("IsManager", "false"))
+            {
+                return RedirectToAction("Index", "Employee");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Privacy()
@@ -53,22 +64,27 @@ namespace ShiftGenius.Controllers
 
             var userClaims = new List<Claim>
             {
-                //Add a claim to store userID
+                // Add a claim to store userID
                 new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
                 new Claim(ClaimTypes.Name, Basic_Functions.getEmployeeNameByID(userId))
-                
             };
 
-            var claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            var authProperties = new AuthenticationProperties();
-
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-
             if (Basic_Functions.isManager(userId))
+            {
+                userClaims.Add(new Claim("IsManager", "true"));
+                var claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties();
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
                 return RedirectToAction("Index", "Manager");
+            }
             else
+            {
+                userClaims.Add(new Claim("IsManager", "false"));
+                var claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties();
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
                 return RedirectToAction("Index", "Employee");
+            }
         }
 
         [HttpPost]
