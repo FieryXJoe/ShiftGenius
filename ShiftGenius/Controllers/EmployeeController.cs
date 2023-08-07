@@ -21,5 +21,10 @@ namespace ShiftGenius.Controllers
             return View();
         }
 
+        public IActionResult EmployeeTimeOffRequest()
+        {
+            return View();
+        }
+
     }
 }
