@@ -133,5 +133,24 @@ namespace ShiftGeniusLibDB
                 return false;
             }
         }
+        /**
+         * Employee has multiple roles so this checks all of their roles and determines if they have manager privledge
+         */
+        public static bool isManager(int employeeId)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var employeeRoles = context.EmployeeRoles.Where(e => e.EmployeeId == employeeId).ToList();
+                foreach (EmployeeRole er in employeeRoles)
+                {
+                    var role = context.Roles.Where(r => r.RoleId == er.RoleId).FirstOrDefault();
+                    if (role.IsManager)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
     }
 }
