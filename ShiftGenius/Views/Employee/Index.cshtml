@@ -6,37 +6,66 @@
 
 @model EmployeeHomeViewModel
 
-<div class="employee-home-container">
-    @*Displaying the user that is logged in, this should probably also take into account if its a manager or employee, idk.*@
-    <div>
-        Welcome Employee
+<div>
+    <div class="d-flex justify-content-center align-items-center" style="height:80vh;">
+        <div class="container text-white" style="background-color: #343F4B; padding: 30px; height:50vh;">
+
+            <div class="row" style="height:85%">
+                <div class="col-md-1-7">
+                    <div class="card text-center card-full-height" style="background-color: #969FAA;">
+                        <div class="card-header">Monday</div>
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1-7">
+                    <div class="card text-center card-full-height" style="background-color: #969FAA;">
+                        <div class="card-header">Tuesday</div>
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1-7">
+                    <div class="card text-center card-full-height" style="background-color: #969FAA;">
+                        <div class="card-header">Wednesday</div>
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1-7">
+                    <div class="card text-center card-full-height" style="background-color: #969FAA;">
+                        <div class="card-header">Thursday</div>
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1-7">
+                    <div class="card text-center card-full-height" style="background-color: #969FAA;">
+                        <div class="card-header">Friday</div>
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1-7">
+                    <div class="card text-center card-full-height" style="background-color: #969FAA;">
+                        <div class="card-header">Saturday</div>
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1-7">
+                    <div class="card text-center card-full-height" style="background-color: #969FAA;">
+                        <div class="card-header">Sunday</div>
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-3">
+                <button class="btn btn-dark"><i class="fa fa-arrow-left"></i></button>
+                <button class="btn btn-dark"><i class="fa fa-arrow-right"></i></button>
+            </div>
+        </div>
     </div>
-    @*<h2>Welcome @Model.EmployeeName</h2>*@
-    <hr />
-    <div class="schedule-banner">
-        <table class="table table-bordered table-calendar">
-            <thead>
-                <tr>
-                    <th>Day</th>
-                    <th>Schedule</th>
-                </tr>
-            </thead>
-            <tbody>
-                @*@foreach (var entry in Model.Schedule)
-                {
-                <tr>
-                    <td>@entry.DayOfWeek</td>
-                    <td>@entry.StartTime - @entry.EndTime</td>
-                </tr>
-                }*@
-                <tr>
-                    <td>Monday</td>
-                    <td>8:00 - 14:00</td>
-                </tr>
-                <tr>
-                    <td>Tuesday</td>
-                    <td>6:00 - 11:00</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+</div>
