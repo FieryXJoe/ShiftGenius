@@ -246,3 +246,14 @@ C:\Users\jsher\source\repos\ShiftGenius\ShiftGenius\bin\Release\net6.0\runtimes\
 C:\Users\jsher\source\repos\ShiftGenius\ShiftGenius\obj\Release\net6.0\ShiftGenius.csproj.CopyComplete
 C:\Users\jsher\source\repos\ShiftGenius\ShiftGenius\bin\Release\net6.0\ShiftGeniusLibDB.dll
 C:\Users\jsher\source\repos\ShiftGenius\ShiftGenius\bin\Release\net6.0\ShiftGeniusLibDB.pdb
+C:\Users\jsher\Github\ShiftGenius\ShiftGenius\obj\Release\net6.0\ShiftGenius.csproj.AssemblyReference.cache
+C:\Users\jsher\Github\ShiftGenius\ShiftGenius\obj\Release\net6.0\ShiftGenius.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jsher\Github\ShiftGenius\ShiftGenius\obj\Release\net6.0\ShiftGenius.AssemblyInfoInputs.cache
+C:\Users\jsher\Github\ShiftGenius\ShiftGenius\obj\Release\net6.0\ShiftGenius.AssemblyInfo.cs
+C:\Users\jsher\Github\ShiftGenius\ShiftGenius\obj\Release\net6.0\ShiftGenius.csproj.CoreCompileInputs.cache
+C:\Users\jsher\Github\ShiftGenius\ShiftGenius\obj\Release\net6.0\ShiftGenius.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\jsher\Github\ShiftGenius\ShiftGenius\obj\Release\net6.0\ShiftGenius.RazorAssemblyInfo.cache
+C:\Users\jsher\Github\ShiftGenius\ShiftGenius\obj\Release\net6.0\ShiftGenius.RazorAssemblyInfo.cs
+C:\Users\jsher\Github\ShiftGenius\ShiftGenius\obj\Release\net6.0\ShiftGenius.dll
+C:\Users\jsher\Github\ShiftGenius\ShiftGenius\obj\Release\net6.0\refint\ShiftGenius.dll
+C:\Users\jsher\Github\ShiftGenius\ShiftGenius\obj\Release\net6.0\ShiftGenius.pdb
