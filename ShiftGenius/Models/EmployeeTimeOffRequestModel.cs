@@ -1,6 +1,6 @@
 ﻿namespace ShiftGenius.Models
 {
-    public class EmployeeTimeOffRequestViewModel
+    public class EmployeeTimeOffRequestModel
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

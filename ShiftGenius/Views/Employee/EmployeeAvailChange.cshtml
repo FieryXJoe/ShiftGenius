@@ -1,0 +1,42 @@
+@model EmployeeAvailChangeModel
+
+<div>
+    <h1>Change Availability</h1>
+    <form asp-controller="Employee" asp-action="SubmitAvailChange" method="post">
+        <div class="form-group">
+            <label>Availability:</label>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Available</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Availability != null)
+                    {
+                        @foreach (var day in Model.Availability)
+                        {
+                            <tr>
+                                <td>@day.Key</td>
+                                <td>
+                                    <input type="checkbox" name="Availability[@day.Key].Enabled" checked="@day.Value.Enabled" />
+                                </td>
+                                <td>
+                                    <input type="time" name="Availability[@day.Key].StartTime" value="@day.Value.StartTime" />
+                                </td>
+                                <td>
+                                    <input type="time" name="Availability[@day.Key].EndTime" value="@day.Value.EndTime" />
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/employee/index" class="btn btn-secondary">Back</a>
+    </form>
+</div>
