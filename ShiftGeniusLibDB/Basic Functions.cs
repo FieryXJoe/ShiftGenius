@@ -152,5 +152,21 @@ namespace ShiftGeniusLibDB
                 return false;
             }
         }
+        
+        public static Employee getEmployeeByID(int id)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var employee = context.Employees.Where(e => e.EmployeeId == id).FirstOrDefault();
+                if (employee != null)
+                {
+                    return employee;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

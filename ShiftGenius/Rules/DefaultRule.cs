@@ -10,6 +10,11 @@
 
         RuleComponent ruleComponent { get; set; }
 
+        public DefaultRule(RuleStrategy ruleStrategy)
+        {
+            this.ruleStrategy = ruleStrategy;
+        }
+
         public Schedule GenerateSchedule()
         {
             return new Schedule();
@@ -33,6 +38,26 @@
         public string DecodeJSON()
         {
             return "DefaultRule decoded from JSON";
+        }
+
+        public Schedule generateSchedule()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool checkSchedule()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Schedule enforceRules(Schedule s)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string DecodeJSON(string json)
+        {
+            throw new NotImplementedException();
         }
     }
 }

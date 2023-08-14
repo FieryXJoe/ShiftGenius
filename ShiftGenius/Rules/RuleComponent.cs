@@ -13,6 +13,6 @@
 
         public String EncodeJSON();
 
-        public String DecodeJSON();
+        public String DecodeJSON(String json);
     }
 }

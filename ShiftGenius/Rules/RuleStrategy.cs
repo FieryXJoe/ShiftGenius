@@ -3,7 +3,7 @@
     public interface RuleStrategy
     {
         public Schedule generateSchedule();
-        public bool checkSchedule();
+        public bool checkSchedule(Schedule s);
         public Schedule enforceRules(Schedule s);
     }
 }

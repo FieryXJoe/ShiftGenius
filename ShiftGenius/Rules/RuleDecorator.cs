@@ -3,15 +3,15 @@
     public abstract class RuleDecorator : RuleComponent
     {
 
-        Schedule schedule;
+        public abstract Schedule schedule { get; set; }
 
-        RuleStrategy ruleStrategy;
+        public abstract RuleStrategy ruleStrategy { get; set; }
 
-        RuleComponent ruleComponent { get; set; }
+        public abstract RuleComponent ruleComponent { get; set; }
 
 
         public abstract bool checkSchedule();
-        public abstract string DecodeJSON();
+        public abstract string DecodeJSON(String json);
         public abstract string EncodeJSON();
         public abstract Schedule enforceRules(Schedule s);
         public abstract Schedule generateSchedule();
