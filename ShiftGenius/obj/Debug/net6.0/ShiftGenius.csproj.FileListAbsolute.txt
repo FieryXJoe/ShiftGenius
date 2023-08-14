@@ -246,3 +246,6 @@ C:\Users\jsher\source\repos\ShiftGenius\ShiftGenius\obj\Debug\net6.0\refint\Shif
 C:\Users\jsher\source\repos\ShiftGenius\ShiftGenius\obj\Debug\net6.0\ShiftGenius.pdb
 C:\Users\jsher\source\repos\ShiftGenius\ShiftGenius\obj\Debug\net6.0\ShiftGenius.genruntimeconfig.cache
 C:\Users\jsher\source\repos\ShiftGenius\ShiftGenius\obj\Debug\net6.0\ref\ShiftGenius.dll
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGenius\obj\Debug\net6.0\ShiftGenius.dll
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGenius\obj\Debug\net6.0\refint\ShiftGenius.dll
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGenius\obj\Debug\net6.0\ShiftGenius.pdb
