@@ -12,3 +12,17 @@ C:\Users\jsher\source\repos\ShiftGenius\ShiftGeniusLibDB\obj\Release\net6.0\refi
 C:\Users\jsher\source\repos\ShiftGenius\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.pdb
 C:\Users\jsher\source\repos\ShiftGenius\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.genruntimeconfig.cache
 C:\Users\jsher\source\repos\ShiftGenius\ShiftGeniusLibDB\obj\Release\net6.0\ref\ShiftGeniusLibDB.dll
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\bin\Release\net6.0\ShiftGeniusLibDB.deps.json
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\bin\Release\net6.0\ShiftGeniusLibDB.runtimeconfig.json
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\bin\Release\net6.0\ShiftGeniusLibDB.dll
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\bin\Release\net6.0\ShiftGeniusLibDB.pdb
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.csproj.AssemblyReference.cache
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.AssemblyInfoInputs.cache
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.AssemblyInfo.cs
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.csproj.CoreCompileInputs.cache
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.dll
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\obj\Release\net6.0\refint\ShiftGeniusLibDB.dll
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.pdb
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.genruntimeconfig.cache
+C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGeniusLibDB\obj\Release\net6.0\ref\ShiftGeniusLibDB.dll
