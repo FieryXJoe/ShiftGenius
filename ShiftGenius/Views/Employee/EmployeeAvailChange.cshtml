@@ -15,20 +15,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var day in Model.Availability)
+                    @if (Model.Availability != null)
                     {
-                    <tr>
-                        <td>@day.Key</td>
-                        <td>
-                            <input type="checkbox" name="Availability[@day.Key].Enabled" checked="@day.Value.Enabled" />
-                        </td>
-                        <td>
-                            <input type="time" name="Availability[@day.Key].StartTime" value="@day.Value.StartTime" />
-                        </td>
-                        <td>
-                            <input type="time" name="Availability[@day.Key].EndTime" value="@day.Value.EndTime" />
-                        </td>
-                    </tr>
+                        @foreach (var day in Model.Availability)
+                        {
+                            <tr>
+                                <td>@day.Key</td>
+                                <td>
+                                    <input type="checkbox" name="Availability[@day.Key].Enabled" checked="@day.Value.Enabled" />
+                                </td>
+                                <td>
+                                    <input type="time" name="Availability[@day.Key].StartTime" value="@day.Value.StartTime" />
+                                </td>
+                                <td>
+                                    <input type="time" name="Availability[@day.Key].EndTime" value="@day.Value.EndTime" />
+                                </td>
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>

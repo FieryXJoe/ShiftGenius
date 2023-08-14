@@ -2,12 +2,12 @@ namespace ShiftGenius.Models
 {
 	public class EmployeeAvailChangeModel
 	{
-		public Dictionary<string, DayAvailability>? Availability { get; set; }
+		public Dictionary<string, Availability>? Availability { get; set; }
 	}
 
-	public class DayAvailability
+	public class Availability
 	{
-		public bool Enabled { get; set; }
+		public bool? Enabled { get; set; }
 		public string? StartTime { get; set; }
 		public string? EndTime { get; set; }
 	}
