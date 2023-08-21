@@ -133,5 +133,12 @@ namespace ShiftGeniusLibDB.Aggregate
                 context.SaveChanges();
             }
         }
+        public void Reset()
+        {
+            foreach (var scheduleDay in ScheduleDays)
+            {
+                scheduleDay.EmployeeScheduleds.Clear();
+            }
+        }
     }
 }

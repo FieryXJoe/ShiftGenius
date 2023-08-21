@@ -1,10 +1,11 @@
-﻿namespace ShiftGenius.Rules
+﻿using ShiftGeniusLibDB.Aggregate;
+
+namespace ShiftGenius.Rules
 {
     public class DefaultRule : RuleComponent
     {
-        private const int MAX_SHIFT_HOURS = 8;
 
-        Schedule schedule = new Schedule();
+        Schedule schedule;
 
         RuleStrategy ruleStrategy;
 
@@ -17,7 +18,8 @@
 
         public Schedule GenerateSchedule()
         {
-            return new Schedule();
+            schedule.Reset();
+            return schedule;
         }
 
         public bool CheckSchedule(Schedule s)
