@@ -61,6 +61,7 @@ namespace ShiftGenius.Rules
         {
             //Create a JSON object containing info of the ID of the employee and the number of hours maximum
             String json = "{";
+            json += "\"Type\": \"MaxHours\",";
             json += "\"EmployeeID\": " + employee.EmployeeId + ",";
             json += "\"MaxHours\": " + maxHours;
             json += "}";

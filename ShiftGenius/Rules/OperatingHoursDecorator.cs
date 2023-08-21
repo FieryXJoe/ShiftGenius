@@ -62,6 +62,7 @@ namespace ShiftGenius.Rules
         public override string EncodeJSON()
         {
             String json = "{";
+            json += "\"Type\": \"OperatingHours\",";
             json += "\"StartTime\": \"" + startTime.ToString() + "\",";
             json += "\"EndTime\": \"" + endTime.ToString() + "\"";
             json += "}";

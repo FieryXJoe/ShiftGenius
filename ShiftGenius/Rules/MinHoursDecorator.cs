@@ -62,6 +62,8 @@ namespace ShiftGenius.Rules
         {
             //Create a JSON object containing info of the ID of the employee and the number of hours minimum
             String json = "{";
+
+            json += "\"Type\": \"MinHours\",";
             json += "\"EmployeeID\": " + employee.EmployeeId + ",";
             json += "\"MinHours\": " + minHours;
             json += "}";
