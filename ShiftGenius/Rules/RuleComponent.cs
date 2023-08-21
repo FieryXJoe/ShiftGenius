@@ -5,11 +5,11 @@ namespace ShiftGenius.Rules
     
     public interface RuleComponent
     {
-        public Schedule generateSchedule();
+        public Schedule GenerateSchedule();
 
-        public bool checkSchedule();
+        public bool CheckSchedule(Schedule s);
 
-        public Schedule enforceRules(Schedule s);
+        public Schedule EnforceRules(Schedule s);
 
         //Class Diagram Specifies changeParent and changeChild but they shouldn't be needed.
 

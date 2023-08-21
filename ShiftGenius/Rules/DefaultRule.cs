@@ -37,29 +37,9 @@ namespace ShiftGenius.Rules
             return "{}";
         }
 
-        public string DecodeJSON()
+        public string DecodeJSON(String s)
         {
             return "DefaultRule decoded from JSON";
-        }
-
-        public Schedule generateSchedule()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool checkSchedule()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Schedule enforceRules(Schedule s)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string DecodeJSON(string json)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ShiftGeniusLibDB.Aggregate
         public DateTime EndDate { get; private set; }
         public int OrganizationId { get; private set; }
 
-        private List<ScheduleDay> ScheduleDays { get; set; }
+        public List<ScheduleDay> ScheduleDays { get; set; }
 
         public Schedule(int organizationId, DateTime startDate, DateTime endDate)
         {
@@ -139,6 +139,60 @@ namespace ShiftGeniusLibDB.Aggregate
             {
                 scheduleDay.EmployeeScheduleds.Clear();
             }
+        }
+
+        //Below this point is logic added for specific rules, especially logic that may need to be reused for other rules.
+
+        public TimeSpan GetTotalHoursForEmployee(int employeeId)
+        {
+            TimeSpan totalHours = TimeSpan.Zero;
+
+            foreach (var scheduleDay in ScheduleDays)
+            {
+                foreach (var employeeScheduled in scheduleDay.EmployeeScheduleds)
+                {
+                    if (employeeScheduled.EmployeeScheduledId == employeeId)
+                    {
+                        totalHours += (employeeScheduled.EndTime - employeeScheduled.StartTime);
+                    }
+                }
+            }
+
+            return totalHours;
+        }
+
+        public List<ScheduleDay> GetScheduleDaysEmployeeIsNotScheduled(int employeeId)
+        {
+            List<ScheduleDay> daysEmployeeIsNotScheduled = new List<ScheduleDay>();
+
+            foreach (var scheduleDay in ScheduleDays)
+            {
+                var isEmployeeScheduledOnThisDay = scheduleDay.EmployeeScheduleds.Any(e => e.EmployeeScheduledId == employeeId);
+
+                if (!isEmployeeScheduledOnThisDay)
+                {
+                    daysEmployeeIsNotScheduled.Add(scheduleDay);
+                }
+            }
+
+            return daysEmployeeIsNotScheduled;
+        }
+
+        public List<ScheduleDay> GetScheduleDaysEmployeeIsScheduled(int employeeId)
+        {
+            List<ScheduleDay> daysEmployeeIsScheduled = new List<ScheduleDay>();
+
+            foreach (var scheduleDay in ScheduleDays)
+            {
+                var isEmployeeScheduledOnThisDay = scheduleDay.EmployeeScheduleds.Any(e => e.EmployeeScheduledId == employeeId);
+                
+                if (isEmployeeScheduledOnThisDay)
+                {
+                    daysEmployeeIsScheduled.Add(scheduleDay);
+                }
+            }
+
+            return daysEmployeeIsScheduled;
         }
     }
 }

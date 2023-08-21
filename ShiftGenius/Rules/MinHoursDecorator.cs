@@ -28,9 +28,9 @@ namespace ShiftGenius.Rules
             DecodeJSON(json);
         }
 
-        public override bool checkSchedule()
+        public override bool CheckSchedule()
         {
-            return ruleStrategy.checkSchedule(schedule);
+            return ruleStrategy.CheckSchedule(schedule);
         }
 
         public override string DecodeJSON(String json)
@@ -65,14 +65,14 @@ namespace ShiftGenius.Rules
             return json;
         }
 
-        public override Schedule enforceRules(Schedule s)
+        public override Schedule EnforceRules(Schedule s)
         {
-            return ruleStrategy.enforceRules(s);
+            return ruleStrategy.EnforceRules(s);
         }
 
-        public override Schedule generateSchedule()
+        public override Schedule GenerateSchedule()
         {
-            return ruleStrategy.generateSchedule();
+            return ruleStrategy.GenerateSchedule();
         }
     }
 }

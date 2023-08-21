@@ -4,8 +4,8 @@ namespace ShiftGenius.Rules
 {
     public interface RuleStrategy
     {
-        public Schedule generateSchedule();
-        public bool checkSchedule(Schedule s);
-        public Schedule enforceRules(Schedule s);
+        public Schedule GenerateSchedule();
+        public bool CheckSchedule(Schedule s);
+        public Schedule EnforceRules(Schedule s);
     }
 }

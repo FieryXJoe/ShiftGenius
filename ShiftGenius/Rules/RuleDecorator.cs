@@ -12,10 +12,10 @@ namespace ShiftGenius.Rules
         public abstract RuleComponent ruleComponent { get; set; }
 
 
-        public abstract bool checkSchedule();
+        public abstract bool CheckSchedule();
         public abstract string DecodeJSON(String json);
         public abstract string EncodeJSON();
-        public abstract Schedule enforceRules(Schedule s);
-        public abstract Schedule generateSchedule();
+        public abstract Schedule EnforceRules(Schedule s);
+        public abstract Schedule GenerateSchedule();
     }
 }
