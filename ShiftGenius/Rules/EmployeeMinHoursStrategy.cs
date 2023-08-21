@@ -1,7 +1,5 @@
-﻿using Humanizer;
-using ShiftGeniusLibDB.Aggregate;
+﻿using ShiftGeniusLibDB.Aggregate;
 using ShiftGeniusLibDB.Models;
-using System.Drawing;
 
 namespace ShiftGenius.Rules
 {
