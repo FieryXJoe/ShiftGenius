@@ -5,30 +5,29 @@ using System.Text.Json;
 
 namespace ShiftGenius.Rules
 {
-    public class MinHoursDecorator : RuleDecorator
+    public class MaxHoursDecorator : RuleDecorator
     {
         Employee employee;
-        int minHours;
+        int maxHours;
         public override Schedule schedule { get; set; }
         public override RuleStrategy ruleStrategy { get; set; }
         public override RuleComponent ruleComponent { get; set; }
 
-
-        public MinHoursDecorator(Employee e, int min, Schedule s)
+        public MaxHoursDecorator(Employee e, int max, Schedule s)
         {
             employee = e;
-            minHours = min;
+            maxHours = max;
 
-            ruleStrategy = new EmployeeMinHoursStrategy(employee, minHours, employee.Organization.OrganizationId, s);
+            ruleStrategy = new EmployeeMaxHoursStrategy(employee, maxHours, employee.Organization.OrganizationId, s);
             schedule = s;
         }
 
-        public MinHoursDecorator(String json, Schedule s)
+        public MaxHoursDecorator(String json, Schedule s)
         {
-            DecodeJSON(json);
             schedule = s;
+            DecodeJSON(json);
 
-            ruleStrategy = new EmployeeMinHoursStrategy(employee, minHours, employee.Organization.OrganizationId, s);
+            ruleStrategy = new EmployeeMaxHoursStrategy(employee, maxHours, employee.Organization.OrganizationId, s);
         }
 
         public override bool CheckSchedule()
@@ -42,14 +41,14 @@ namespace ShiftGenius.Rules
             JsonElement root = doc.RootElement;
 
             if (root.TryGetProperty("EmployeeID", out JsonElement employeeIdElement) &&
-                root.TryGetProperty("MinHours", out JsonElement minHoursElement))
+                root.TryGetProperty("MaxHours", out JsonElement maxHoursElement))
             {
                 int employeeId = employeeIdElement.GetInt32();
-                int minHours = minHoursElement.GetInt32();
+                int maxHours = maxHoursElement.GetInt32();
 
                 employee = Basic_Functions.getEmployeeByID(employeeId);
 
-                return $"EmployeeID: {employeeId}, MinHours: {minHours}";
+                return $"EmployeeID: {employeeId}, MaxHours: {maxHours}";
             }
             else
             {
@@ -60,10 +59,10 @@ namespace ShiftGenius.Rules
 
         public override string EncodeJSON()
         {
-            //Create a JSON object containing info of the ID of the employee and the number of hours minimum
+            //Create a JSON object containing info of the ID of the employee and the number of hours maximum
             String json = "{";
             json += "\"EmployeeID\": " + employee.EmployeeId + ",";
-            json += "\"MinHours\": " + minHours;
+            json += "\"MaxHours\": " + maxHours;
             json += "}";
             return json;
         }
