@@ -1,4 +1,6 @@
-﻿namespace ShiftGenius.Rules
+﻿using ShiftGeniusLibDB.Aggregate;
+
+namespace ShiftGenius.Rules
 {
     
     public interface RuleComponent

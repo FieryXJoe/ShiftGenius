@@ -1,4 +1,5 @@
 ﻿using ShiftGeniusLibDB;
+using ShiftGeniusLibDB.Aggregate;
 using ShiftGeniusLibDB.Models;
 using System.Text.Json;
 
