@@ -88,6 +88,8 @@ namespace ShiftGenius.Rules
         {
             schedule.Reset();
             Random random = new Random();
+            int currentHours = 0;
+
             foreach (var day in schedule.ScheduleDays)
             {
                 if (day.EmployeeScheduleds == null)
@@ -95,21 +97,46 @@ namespace ShiftGenius.Rules
                     day.EmployeeScheduleds = new List<EmployeeScheduled>();
                 }
 
-                //TODO: Fetch the actual opening and closing times from the database for this step.
-                int startHour = random.Next(8, 20 - minHours); // Randomly decide the start time
-                DateTime shiftStart = day.Day.AddHours(startHour);
-                DateTime shiftEnd = shiftStart.AddHours(minHours);
+                int remainingHoursForDay = Math.Min(8, minHours - currentHours);
 
-                var newShift = new EmployeeScheduled
+                while (remainingHoursForDay > 0)
                 {
-                    EmployeeScheduledId = employee.EmployeeId,
-                    ScheduleDayId = day.ScheduleDayId,
-                    StartTime = shiftStart,
-                    EndTime = shiftEnd
-                };
+                    // Decide the length of the shift to schedule
+                    int shiftLength = Math.Min(remainingHoursForDay, random.Next(6, 8));
 
-                day.EmployeeScheduleds.Add(newShift);
+                    // Randomly decide the start time
+                    //TODO: Fetch this from database
+                    int startHour = random.Next(8, 20 - shiftLength);
+                    DateTime shiftStart = day.Day.AddHours(startHour);
+                    DateTime shiftEnd = shiftStart.AddHours(shiftLength);
+
+                    var newShift = new EmployeeScheduled
+                    {
+                        EmployeeScheduledId = employee.EmployeeId,
+                        ScheduleDayId = day.ScheduleDayId,
+                        StartTime = shiftStart,
+                        EndTime = shiftEnd
+                    };
+
+                    day.EmployeeScheduleds.Add(newShift);
+
+                    currentHours += shiftLength;
+                    remainingHoursForDay -= shiftLength;
+
+                    // Check if minHours has been reached or exceeded
+                    if (currentHours >= minHours)
+                    {
+                        break;
+                    }
+                }
+
+                // Exit the loop if we've reached or exceeded minHours
+                if (currentHours >= minHours)
+                {
+                    break;
+                }
             }
+
             return schedule;
         }
     }
