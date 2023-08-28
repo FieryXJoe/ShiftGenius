@@ -194,5 +194,28 @@ namespace ShiftGeniusLibDB.Aggregate
 
             return daysEmployeeIsScheduled;
         }
+
+        public Employee FindEmployeeNotScheduledForDay(ScheduleDay day)
+        {
+            List<int> scheduledEmployeeIds = day.EmployeeScheduleds.Select(e => e.EmployeeScheduledId).ToList();
+
+            List<Employee> allEmployees = new List<Employee>();
+            using (var context = new ShiftGeniusContext())
+            {
+                allEmployees = context.Employees.Where(e => e.OrganizationId == OrganizationId).ToList();
+            }
+
+            // Filter out employees who are already scheduled for the day
+            var availableEmployees = allEmployees.Where(e => !scheduledEmployeeIds.Contains(e.EmployeeId)).ToList();
+
+            if (availableEmployees.Count == 0)
+            {
+                return null;
+            }
+
+            Random rand = new Random();
+            int index = rand.Next(availableEmployees.Count);
+            return availableEmployees[index];
+        }
     }
 }
