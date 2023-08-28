@@ -152,7 +152,7 @@ namespace ShiftGeniusLibDB
                 return false;
             }
         }
-        
+
         public static Employee getEmployeeByID(int id)
         {
             using (var context = new ShiftGeniusContext())
@@ -161,6 +161,22 @@ namespace ShiftGeniusLibDB
                 if (employee != null)
                 {
                     return employee;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static List<ScheduleRule> getRulesForOrganization(int organizationID)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var rules = context.ScheduleRules.Where(r => r.OrganizationId == organizationID).ToList();
+                if (rules != null)
+                {
+                    return rules;
                 }
                 else
                 {

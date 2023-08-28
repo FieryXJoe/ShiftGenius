@@ -16,5 +16,7 @@ namespace ShiftGenius.Rules
         public String EncodeJSON();
 
         public String DecodeJSON(String json);
+
+        public abstract RuleComponent ruleComponent { get; set; }
     }
 }

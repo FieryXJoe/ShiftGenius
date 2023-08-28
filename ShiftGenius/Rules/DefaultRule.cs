@@ -9,11 +9,12 @@ namespace ShiftGenius.Rules
 
         RuleStrategy ruleStrategy;
 
-        RuleComponent ruleComponent { get; set; }
+        public RuleComponent ruleComponent { get; set; }
 
-        public DefaultRule(RuleStrategy ruleStrategy)
+        public DefaultRule(Schedule s)
         {
-            this.ruleStrategy = ruleStrategy;
+            schedule = s;
+            ruleStrategy = new DefaultStrategy(s);
         }
 
         public Schedule GenerateSchedule()
