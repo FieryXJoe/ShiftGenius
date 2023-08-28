@@ -20,5 +20,11 @@ namespace ShiftGenius.Rules
         {
             return schedule;
         }
+
+        public Schedule GenerateSchedule()
+        {
+            schedule.Reset();
+            return schedule;
+        }
     }
 }

@@ -104,7 +104,7 @@ namespace ShiftGenius.Rules
         public Schedule GenerateSchedule()
         {
             // Return a blank schedule for now
-            schedule.Reset()
+            schedule.Reset();
             return schedule;
         }
     }

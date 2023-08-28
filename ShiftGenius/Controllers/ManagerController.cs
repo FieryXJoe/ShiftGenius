@@ -14,5 +14,9 @@ namespace ShiftGenius.Controllers
         {
             return View();
         }
+        public IActionResult RuleList()
+        {
+            return View();
+        }
     }
 }
