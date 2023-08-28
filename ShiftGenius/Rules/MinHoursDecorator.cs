@@ -31,7 +31,7 @@ namespace ShiftGenius.Rules
             ruleStrategy = new EmployeeMinHoursStrategy(employee, minHours, employee.Organization.OrganizationId, s);
         }
 
-        public override bool CheckSchedule()
+        public override bool CheckSchedule(Schedule s)
         {
             return ruleStrategy.CheckSchedule(schedule);
         }

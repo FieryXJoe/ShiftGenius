@@ -10,5 +10,9 @@ namespace ShiftGenius.Controllers
         {
             return View();
         }
+        public IActionResult ScheduleGenerator()
+        {
+            return View();
+        }
     }
 }
