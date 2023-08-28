@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FfBgu5Nwa9NbQONJnnYy3hScO7QtY0Qk08FWNU/zyH0+po2Y+EMjHgTBRZfD0EuZmvsa6Q/rrCyfhKwO11JXng==",
+  "dgSpecHash": "cV4zRG/rCx6Lq2rEW0VAzxOv2vsfLkGUhqcpf4P54Xzwmj6SnosN0zNmVrSKZnJkiM5ipa9hldkzU6bzO6UNGg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjMain\\seniorProjMain\\ShiftGenius\\ShiftGenius.csproj",
+  "projectFilePath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ml102753\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\ml102753\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

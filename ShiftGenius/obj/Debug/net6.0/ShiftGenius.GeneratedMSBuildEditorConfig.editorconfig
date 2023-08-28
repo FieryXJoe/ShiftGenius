@@ -9,81 +9,73 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ShiftGenius
 build_property.RootNamespace = ShiftGenius
-build_property.ProjectDir = C:\Users\jsher\source\repos\ShiftGenius\ShiftGenius\
+build_property.ProjectDir = C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjNew\ShiftGenius\ShiftGenius\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\jsher\source\repos\ShiftGenius\ShiftGenius
+build_property.MSBuildProjectDirectory = C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjNew\ShiftGenius\ShiftGenius
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/EmployeePages/employeeAvailability.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVQYWdlc1xlbXBsb3llZUF2YWlsYWJpbGl0eS5jc2h0bWw=
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Employee/EmployeeAvailChange.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcRW1wbG95ZWVBdmFpbENoYW5nZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/EmployeePages/employeeHome.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVQYWdlc1xlbXBsb3llZUhvbWUuY3NodG1s
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Employee/EmployeeTimeOffRequest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcRW1wbG95ZWVUaW1lT2ZmUmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/EmployeePages/employeeTimeOffRequest.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVQYWdlc1xlbXBsb3llZVRpbWVPZmZSZXF1ZXN0LmNzaHRtbA==
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Employee/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/Home/Index.cshtml]
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/Home/Login.cshtml]
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Home/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/Home/Privacy.cshtml]
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/Home/SignUp.cshtml]
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Home/SignUp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/ManagerPages/managerAvailabilityRequests.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclBhZ2VzXG1hbmFnZXJBdmFpbGFiaWxpdHlSZXF1ZXN0cy5jc2h0bWw=
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Manager/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/ManagerPages/managerHome.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclBhZ2VzXG1hbmFnZXJIb21lLmNzaHRtbA==
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Manager/InviteEmployee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxJbnZpdGVFbXBsb3llZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/ManagerPages/managerOpenings.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclBhZ2VzXG1hbmFnZXJPcGVuaW5ncy5jc2h0bWw=
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Manager/ManagerAvailabilityRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxNYW5hZ2VyQXZhaWxhYmlsaXR5UmVxdWVzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/ManagerPages/managerRules.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclBhZ2VzXG1hbmFnZXJSdWxlcy5jc2h0bWw=
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Manager/ManagerTimeOffRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxNYW5hZ2VyVGltZU9mZlJlcXVlc3RzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/ManagerPages/managerTimeOffRequests.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclBhZ2VzXG1hbmFnZXJUaW1lT2ZmUmVxdWVzdHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/ManagerPages/managerViewSchedule.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclBhZ2VzXG1hbmFnZXJWaWV3U2NoZWR1bGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/Shared/Error.cshtml]
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/_ViewImports.cshtml]
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/_ViewStart.cshtml]
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jsher/source/repos/ShiftGenius/ShiftGenius/Views/Shared/_Layout.cshtml]
+[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjNew/ShiftGenius/ShiftGenius/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-vpo8ux4pjt

@@ -74,7 +74,7 @@ namespace ShiftGenius.Controllers
 
             // We can display a success message or redirect to a confirmation page.
             // For now, we'll redirect back to the form.
-            return RedirectToAction("InviteEmployee");
+            return RedirectToAction("SignUp", "Home");
         }
 
         private string GenerateRegistrationLink()
