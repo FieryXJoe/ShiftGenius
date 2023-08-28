@@ -53,7 +53,7 @@ namespace ShiftGenius.Controllers
         }
       
         [HttpGet]
-        public IActionResult InviteEmployeeForm()
+        public IActionResult InviteEmployee()
         {
             var model = new InviteEmployeeViewModel(); 
             return View(model);
@@ -64,7 +64,7 @@ namespace ShiftGenius.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("InviteEmployeeForm", model);
+                return View("InviteEmployee", model);
             }
 
             // Generate a unique registration link.
@@ -74,7 +74,7 @@ namespace ShiftGenius.Controllers
 
             // We can display a success message or redirect to a confirmation page.
             // For now, we'll redirect back to the form.
-            return RedirectToAction("InviteEmployeeForm");
+            return RedirectToAction("InviteEmployee");
         }
 
         private string GenerateRegistrationLink()
