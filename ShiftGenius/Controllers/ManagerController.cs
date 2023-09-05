@@ -19,7 +19,7 @@ namespace ShiftGenius.Controllers
         public IActionResult RuleList()
         {
             return View();
-
+        }
 
         [Authorize(Policy = "IsManager")]
         public IActionResult ManagerTimeOffRequests()
