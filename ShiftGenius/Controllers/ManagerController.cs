@@ -12,6 +12,14 @@ namespace ShiftGenius.Controllers
         {
             return View();
         }
+        public IActionResult ScheduleGenerator()
+        {
+            return View();
+        }
+        public IActionResult RuleList()
+        {
+            return View();
+
 
         [Authorize(Policy = "IsManager")]
         public IActionResult ManagerTimeOffRequests()
