@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jsher\\Github\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj": {}
+    "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jsher\\Github\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
+    "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jsher\\Github\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
+        "projectUniqueName": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
         "projectName": "ShiftGeniusLibDB",
-        "projectPath": "C:\\Users\\jsher\\Github\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
-        "packagesPath": "C:\\Users\\jsher\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jsher\\Github\\ShiftGenius\\ShiftGeniusLibDB\\obj\\",
+        "projectPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
+        "packagesPath": "C:\\Users\\ml102753\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\jsher\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ml102753\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -65,7 +70,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -74,21 +80,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\jsher\\Github\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj": {
+    "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jsher\\Github\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
+        "projectUniqueName": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
         "projectName": "ShiftGenius",
-        "projectPath": "C:\\Users\\jsher\\Github\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
-        "packagesPath": "C:\\Users\\jsher\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jsher\\Github\\ShiftGenius\\ShiftGenius\\obj\\",
+        "projectPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
+        "packagesPath": "C:\\Users\\ml102753\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\jsher\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ml102753\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,14 +106,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\jsher\\Github\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
-                "projectPath": "C:\\Users\\jsher\\Github\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj"
+              "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
+                "projectPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj"
               }
             }
           }
@@ -143,7 +154,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -155,7 +167,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
