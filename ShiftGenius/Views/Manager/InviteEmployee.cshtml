@@ -1,0 +1,11 @@
+﻿@model InviteEmployeeViewModel
+
+<h2>Invite an Employee</h2>
+
+<form method="post" asp-action="SendInvitation">
+    <div class="form-group">
+        <label for="inputEmail">Email Address</label>
+        <input type="email" class="form-control" id="inputEmail" asp-for="EmailAddress" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Send Invitation</button>
+</form>

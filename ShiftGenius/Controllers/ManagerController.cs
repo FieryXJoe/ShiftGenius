@@ -40,7 +40,7 @@ namespace ShiftGenius.Controllers
         }
 
         // This is just a mock function to generate sample data, replace it with actual data retrieval logic
-        
+
         private List<TimeOffRequest> GetMockTimeOffRequests()
         {
             return new List<TimeOffRequest>
@@ -59,5 +59,41 @@ namespace ShiftGenius.Controllers
                 new ManagerAvailRequestModel { EmployeeID = "002", EmployeeName = "Joe Joe" },
             };
         }
+      
+        [HttpGet]
+        public IActionResult InviteEmployee()
+        {
+            var model = new InviteEmployeeViewModel(); 
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult SendInvitation(InviteEmployeeViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("InviteEmployee", model);
+            }
+
+            // Generate a unique registration link.
+            string registrationLink = GenerateRegistrationLink();
+
+            // Send the registration link to the employee's email.
+
+            // We can display a success message or redirect to a confirmation page.
+            // For now, we'll redirect back to the form.
+            return RedirectToAction("SignUp", "Home");
+        }
+
+        private string GenerateRegistrationLink()
+        {
+
+            string token = "unique_token_here";
+
+            // Construct the registration link with the token.
+            return Url.Action("SignUp", "Home", new { area = "", token }, Request.Scheme);
+        }
+
+
     }
 }
