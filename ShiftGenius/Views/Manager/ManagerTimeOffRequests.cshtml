@@ -1,0 +1,38 @@
+﻿@model ManagerTimeOffRequestsViewModel
+
+<div>
+    <h1>Employee Time Off Requests</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Type of Time Off</th>
+                <th>Decision</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model.TimeOffRequests)
+            {
+                <tr>
+                    <td>@request.EmployeeName</td>
+                    <td>@request.StartDate</td>
+                    <td>@request.EndDate</td>
+                    <td>@request.TypeOfTimeOff</td>
+                    <td>
+                        <select name="Decision">
+                            <option value="Approve">Approve</option>
+                            <option value="Deny">Deny</option>
+                        </select>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div>
+        <a href="@Url.Action("Index", "Manager")" class="btn btn-secondary">Back</a>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</div>

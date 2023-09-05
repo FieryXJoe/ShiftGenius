@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    @RenderSection("Styles", required: false)
     <style>
         /* Font from our prototype. */
         body {
@@ -49,6 +50,28 @@
         .btn-secondary {
             background-color: #6C757D;
             border-color: #6C757D;
+        }
+
+        .employee-time-off-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: #343F4B;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        /* Additional styles for form elements */
+        .form-group label {
+            color: white;
+        }
+
+        .form-control {
+            background-color: #212529;
+            color: white;
         }
     </style>
 </head>
