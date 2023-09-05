@@ -16,7 +16,13 @@
                     <div class="card text-center card-full-height" style="background-color: #969FAA;">
                         <div class="card-header" style="color:#122235; font-size:20px">Monday</div>
                         <div class="card-body d-flex justify-content-center align-items-center" style="color:#56606c;font-size:16px;font-weight:lighter">
+                            Mike: 
+                            <br />
                             8am - 4pm
+                            <br />
+							Joe:
+                            <br />
+                            2pm - 8pm
                         </div>
                     </div>
                 </div>
@@ -24,7 +30,13 @@
                     <div class="card text-center card-full-height" style="background-color: #969FAA;">
                         <div class="card-header" style="color:#122235; font-size:20px">Tuesday</div>
                         <div class="card-body d-flex justify-content-center align-items-center" style="color:#56606c;font-size:16px;font-weight:lighter">
+                            Mike:
+                            <br />
                             7am - 5pm
+                            <br />
+							Joe:
+                            <br />
+                            2pm - 8pm
                         </div>
                     </div>
                 </div>
@@ -32,7 +44,13 @@
                     <div class="card text-center card-full-height" style="background-color: #969FAA;">
                         <div class="card-header" style="color:#122235; font-size:17px">Wednesday</div>
                         <div class="card-body d-flex justify-content-center align-items-center" style="color:#56606c;font-size:16px;font-weight:lighter">
+                            Mike:
+                            <br />
                             8am - 4pm
+                            <br />
+							Joe:
+                            <br />
+                            2pm - 8pm
                         </div>
                     </div>
                 </div>
@@ -40,7 +58,13 @@
                     <div class="card text-center card-full-height" style="background-color: #969FAA;">
                         <div class="card-header" style="color:#122235; font-size:20px">Thursday</div>
                         <div class="card-body d-flex justify-content-center align-items-center" style="color:#56606c;font-size:16px;font-weight:lighter">
+                            Mike:
+                            <br />
                             PTO
+                            <br />
+							Joe:
+                            <br />
+                            7am - 5pm
                         </div>
                     </div>
                 </div>
@@ -48,7 +72,13 @@
                     <div class="card text-center card-full-height" style="background-color: #969FAA;">
                         <div class="card-header" style="color:#122235; font-size:20px">Friday</div>
                         <div class="card-body d-flex justify-content-center align-items-center" style="color:#56606c;font-size:16px;font-weight:lighter">
+                            Mike:
+                            <br />
                             7am - 5pm
+                            <br />
+							Joe:
+                            <br />
+                            PTO
                         </div>
                     </div>
                 </div>
@@ -56,7 +86,13 @@
                     <div class="card text-center card-full-height" style="background-color: #969FAA;">
                         <div class="card-header" style="color:#122235; font-size:20px">Saturday</div>
                         <div class="card-body d-flex justify-content-center align-items-center" style="color:#56606c;font-size:16px;font-weight:lighter">
+                            Mike:
+                            <br />
                             8am - 4pm
+                            <br />
+							Joe:
+                            <br />
+                            2pm - 8pm
                         </div>
                     </div>
                 </div>
@@ -64,7 +100,9 @@
                     <div class="card text-center card-full-height" style="background-color: #969FAA;">
                         <div class="card-header" style="color:#122235; font-size:20px">Sunday</div>
                         <div class="card-body d-flex justify-content-center align-items-center" style="color:#56606c;font-size:16px;font-weight:lighter">
-                            OFF
+							Joe:
+                            <br />
+                            8am - 4pm
                         </div>
                     </div>
                 </div>
@@ -73,17 +111,16 @@
             <div class="d-flex justify-content-between mt-3">
                 <button class="btn btn-dark"><i class="fa fa-arrow-left"></i></button>
                 <a class="btn btn-secondary">
-                    View Full Schedule</a>
+                    View Full Schedule
+                </a>
                 <button class="btn btn-dark"><i class="fa fa-arrow-right"></i></button>
             </div>
         </div>
     </div>
     <div class="text-center mt-8">
-
-        <a class="btn btn-primary" style="margin-right:50px" asp-controller="Manager" asp-action="ScheduleGenerator">Generate Schedule</a>
-        <a class="btn btn-primary" href="@Url.Action("ManagerTimeOffRequests", "Manager")" style="margin-right: 50px;">Time Off Requests</a>
-        <a class="btn btn-primary" href="@Url.Action("ManagerAvailabilityRequests", "Manager")" style="margin-right: 50px;">Availability Changes</a>
-        <a class="btn btn-primary" asp-controller="Manager" asp-action="RuleList">View Schedule Rules</a>
-
+        <a class="btn btn-success" style="margin-right:50px">Confirm</a>
+        <a class="btn btn-primary" style="margin-right:50px">Edit</a>
+        <a class="btn btn-primary" style="margin-right:50px">Regenerate</a>
+        <a class="btn btn-danger" asp-controller="Manager" asp-action="Index">Cancel</a>
     </div>
 </div>
