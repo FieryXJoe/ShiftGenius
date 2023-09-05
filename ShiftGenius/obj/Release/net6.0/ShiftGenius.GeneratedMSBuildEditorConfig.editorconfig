@@ -5,73 +5,68 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
-build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ShiftGenius
 build_property.RootNamespace = ShiftGenius
-build_property.ProjectDir = C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGenius\
+build_property.ProjectDir = C:\Users\jsher\Github\ShiftGenius\ShiftGenius\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjMain\seniorProjMain\ShiftGenius
+build_property.MSBuildProjectDirectory = C:\Users\jsher\Github\ShiftGenius\ShiftGenius
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/Employee/EmployeeAvailChange.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcRW1wbG95ZWVBdmFpbENoYW5nZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/Employee/EmployeeTimeOffRequest.cshtml]
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/Employee/EmployeeTimeOffRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcRW1wbG95ZWVUaW1lT2ZmUmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/Employee/Index.cshtml]
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/Employee/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/Home/Index.cshtml]
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/Home/Login.cshtml]
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/Home/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/Home/Privacy.cshtml]
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/Home/SignUp.cshtml]
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/Home/SignUp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/Manager/Index.cshtml]
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/Manager/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/Manager/ManagerAvailabilityRequests.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxNYW5hZ2VyQXZhaWxhYmlsaXR5UmVxdWVzdHMuY3NodG1s
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/Manager/RuleList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxSdWxlTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/Manager/ManagerTimeOffRequests.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxNYW5hZ2VyVGltZU9mZlJlcXVlc3RzLmNzaHRtbA==
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/Manager/ScheduleGenerator.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxTY2hlZHVsZUdlbmVyYXRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/Shared/Error.cshtml]
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/_ViewImports.cshtml]
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/_ViewStart.cshtml]
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ml102753/OneDrive - harriscomputer/Desktop/seniorProjMain/seniorProjMain/ShiftGenius/Views/Shared/_Layout.cshtml]
+[C:/Users/jsher/Github/ShiftGenius/ShiftGenius/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-vpo8ux4pjt
