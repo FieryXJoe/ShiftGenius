@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cV4zRG/rCx6Lq2rEW0VAzxOv2vsfLkGUhqcpf4P54Xzwmj6SnosN0zNmVrSKZnJkiM5ipa9hldkzU6bzO6UNGg==",
+  "dgSpecHash": "noHhuNl9/+4tCuzPIId5sUIcCNnarZxBcOtcRvNjioTu4SRQ030Ic3krspky5mcis/AI3nPhAAUhw//g1JVVcw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
+  "projectFilePath": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ml102753\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\ml102753\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -137,6 +137,8 @@
     "C:\\Users\\ml102753\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\ml102753\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\ml102753\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\ml102753\\.nuget\\packages\\sendgrid\\9.28.1\\sendgrid.9.28.1.nupkg.sha512",
+    "C:\\Users\\ml102753\\.nuget\\packages\\starkbank-ecdsa\\1.3.3\\starkbank-ecdsa.1.3.3.nupkg.sha512",
     "C:\\Users\\ml102753\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\ml102753\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\ml102753\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using ShiftGenius.Models;
 using System.Collections.Generic;
+using System.Net.Mail;
 
 namespace ShiftGenius.Controllers
 {
@@ -59,16 +62,9 @@ namespace ShiftGenius.Controllers
                 new ManagerAvailRequestModel { EmployeeID = "002", EmployeeName = "Joe Joe" },
             };
         }
-      
-        [HttpGet]
-        public IActionResult InviteEmployee()
-        {
-            var model = new InviteEmployeeViewModel(); 
-            return View(model);
-        }
 
         [HttpPost]
-        public IActionResult SendInvitation(InviteEmployeeViewModel model)
+        public async Task<IActionResult> SendInvitation(InviteEmployeeViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -76,24 +72,45 @@ namespace ShiftGenius.Controllers
             }
 
             // Generate a unique registration link.
-            string registrationLink = GenerateRegistrationLink();
+            string registrationLink = GenerateUniqueToken();
 
-            // Send the registration link to the employee's email.
+            // Send the registration link to the employee's email using SendGrid.
+            var sendGridApiKey = "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"; // Replace with your SendGrid API key
+            var client = new SendGridClient(sendGridApiKey);
 
-            // We can display a success message or redirect to a confirmation page.
-            // For now, we'll redirect back to the form.
+            var msg = new SendGridMessage()
+            {
+                From = new EmailAddress("ml102753@ShiftGenius.com", "Michael Lopez"),
+                Subject = "Invitation to ShiftGenius",
+                PlainTextContent = $"You're invited to join ShiftGenius! Click on the following link to register: {registrationLink}",
+                HtmlContent = $"<p>You're invited to join ShiftGenius! Click on the following link to register: <a href='{registrationLink}'>{registrationLink}</a></p>"
+            };
+
+            msg.AddTo(model.EmailAddress);
+
+            var response = await client.SendEmailAsync(msg);
+
+            // Check if the email was sent successfully (you can add error handling here)
+            if (response.StatusCode != System.Net.HttpStatusCode.Accepted)
+            {
+                // Handle the case where the email failed to send.
+                // You can log the error or display a message to the user.
+                TempData["ErrorMessage"] = "Failed to send the invitation email.";
+                return RedirectToAction("Error");
+            }
+
+            // Email sent successfully
+            TempData["SuccessMessage"] = "Invitation email sent successfully!";
             return RedirectToAction("SignUp", "Home");
         }
 
-        private string GenerateRegistrationLink()
+        private string GenerateUniqueToken()
         {
+            // Generate a unique token using a GUID
+            Guid uniqueGuid = Guid.NewGuid();
+            string uniqueToken = uniqueGuid.ToString();
 
-            string token = "unique_token_here";
-
-            // Construct the registration link with the token.
-            return Url.Action("SignUp", "Home", new { area = "", token }, Request.Scheme);
+            return uniqueToken;
         }
-
-
     }
 }

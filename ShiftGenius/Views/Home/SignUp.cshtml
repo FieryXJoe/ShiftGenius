@@ -2,6 +2,22 @@
 
 <h2>Sign Up</h2>
 
+<!-- Success Message -->
+@if (TempData.ContainsKey("SuccessMessage"))
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<!-- Error Message -->
+@if (TempData.ContainsKey("ErrorMessage"))
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
 <form method="post" asp-action="SignUp">
     <div class="text-danger" asp-validation-summary="ModelOnly"></div>
     <div>
@@ -24,6 +40,8 @@
         <input asp-for="ConfirmPassword" type="password" class="form-control" />
         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
     </div>
+    <!-- Add a hidden input field for the token -->
+    <input type="hidden" asp-for="Token" />
     <div>
         <input type="submit" value="Sign Up" class="btn btn-primary" />
     </div>

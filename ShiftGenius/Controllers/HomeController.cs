@@ -109,7 +109,7 @@ namespace ShiftGenius.Controllers
             {
                 return View(model);
             }
-            
+
             bool result = Basic_Functions.AddEmployee(model.Name, model.Email, model.Password);
 
             if (result)
@@ -128,5 +128,13 @@ namespace ShiftGenius.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpGet("SignUp/{token?}")]
+        public IActionResult SignUp(string token = null)
+        {
+            var viewModel = new SignUpViewModel { Token = token };
+            return View(viewModel);
+        }
+
     }
 }
