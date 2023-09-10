@@ -62,6 +62,10 @@ namespace ShiftGenius.Controllers
                 new ManagerAvailRequestModel { EmployeeID = "002", EmployeeName = "Joe Joe" },
             };
         }
+        public IActionResult InviteEmployee()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> SendInvitation(InviteEmployeeViewModel model)
@@ -75,7 +79,7 @@ namespace ShiftGenius.Controllers
             string registrationLink = GenerateUniqueToken();
 
             // Send the registration link to the employee's email using SendGrid.
-            var sendGridApiKey = "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"; // Replace with your SendGrid API key
+            var sendGridApiKey = "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"; 
             var client = new SendGridClient(sendGridApiKey);
 
             var msg = new SendGridMessage()
