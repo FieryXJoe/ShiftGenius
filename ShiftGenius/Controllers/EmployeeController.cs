@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Humanizer;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShiftGenius.Models;
 using ShiftGeniusLibDB.Models;
 using System;
@@ -51,29 +53,26 @@ namespace ShiftGenius.Controllers
                     RequestDate = DateTime.Now,
                     //Status = "Pending", // Set the initial status
                     EmployeeID = 1, // Replace with the actual employee ID
-                    //Comments = model.Comments // Capture comments if provided
                 };
 
                 _dbContext.TimeOffRequests.Add(timeOffRequest);
                 _dbContext.SaveChanges();
 
-                return RedirectToAction("RequestConfirmation");
+                return RedirectToAction("Index", "Employee");
             }
 
             return View(model);
         }
 
-
         public IActionResult EmployeeAvailChange()
-        {
-            // For demonstration purposes, let's create a sample availability dictionary
+    {
+        // For demonstration purposes, let's create a sample availability dictionary
             var availabilityData = new Dictionary<string, Availability>
             {
                 // Add availability data here
             };
-
-            var viewModel = new EmployeeAvailChangeModel
-            {
+        var viewModel = new EmployeeAvailChangeModel
+        {
                 Availability = availabilityData
             };
 

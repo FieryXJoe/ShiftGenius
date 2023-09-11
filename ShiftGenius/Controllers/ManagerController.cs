@@ -107,7 +107,7 @@ namespace ShiftGenius.Controllers
 
                 // Email sent successfully
                 TempData["SuccessMessage"] = "Invitation email sent successfully!";
-                return RedirectToAction("Index", "Manager");
+                return RedirectToAction("InviteEmployee", "Manager");
             }
             catch (Exception ex)
             {
