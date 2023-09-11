@@ -76,7 +76,6 @@ namespace ShiftGenius.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> SendInvitation(InviteEmployeeViewModel model)
         {
@@ -87,6 +86,10 @@ namespace ShiftGenius.Controllers
 
             // Generate a unique registration link.
             string registrationLink = GenerateUniqueToken();
+
+            // Construct the full registration URL
+            var baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}";
+            var fullRegistrationLink = $"{baseUrl}/Home/SignUp?token={registrationLink}";
 
             try
             {
@@ -99,7 +102,7 @@ namespace ShiftGenius.Controllers
                     var mailMessage = new MailMessage();
                     mailMessage.From = new MailAddress("Miketatooine@Gmail.com", "Michael from ShiftGenius");
                     mailMessage.Subject = "Invitation to ShiftGenius";
-                    mailMessage.Body = $"You're invited to join ShiftGenius! Click on the following link to register: {registrationLink}";
+                    mailMessage.Body = $"You're invited to join ShiftGenius! Click on the following link to register: <a href='{fullRegistrationLink}'>{fullRegistrationLink}</a>";
                     mailMessage.IsBodyHtml = true;
                     mailMessage.To.Add(model.EmailAddress);
 
@@ -109,7 +112,7 @@ namespace ShiftGenius.Controllers
 
                 // Email sent successfully
                 TempData["SuccessMessage"] = "Invitation email sent successfully!";
-                return RedirectToAction("SignUp", "Home");
+                return RedirectToAction("Index", "Manager");
             }
             catch (Exception ex)
             {
@@ -120,6 +123,7 @@ namespace ShiftGenius.Controllers
                 return RedirectToAction("Error");
             }
         }
+
 
         private string GenerateUniqueToken()
         {
