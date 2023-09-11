@@ -51,18 +51,22 @@ namespace ShiftGenius.Controllers
                     EndDate = model.EndDate,
                     Type = model.Type,
                     RequestDate = DateTime.Now,
-                    //Status = "Pending", // Set the initial status
+                    Status = "Pending", // Set the initial status
                     EmployeeID = 1, // Replace with the actual employee ID
                 };
 
                 _dbContext.TimeOffRequests.Add(timeOffRequest);
                 _dbContext.SaveChanges();
 
+                // Set a success flag in TempData
+                TempData["IsSuccess"] = true;
+
                 return RedirectToAction("Index", "Employee");
             }
 
             return View(model);
         }
+
 
         public IActionResult EmployeeAvailChange()
     {
