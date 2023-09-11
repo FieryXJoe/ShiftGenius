@@ -1,4 +1,10 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using ShiftGenius.Models;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,10 +13,10 @@ builder.Services.AddControllersWithViews();
 
 // Add authentication services.
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(options =>
-            {
-                options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Home/Login");
-            });
+    .AddCookie(options =>
+    {
+        options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Home/Login");
+    });
 
 builder.Services.AddAuthorization(options =>
 {
@@ -19,6 +25,10 @@ builder.Services.AddAuthorization(options =>
         policy.RequireClaim("IsManager", "true");
     });
 });
+
+// Add database context configuration
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer("Server=shiftgeniusmsft.cgkhjaoqz22z.us-east-1.rds.amazonaws.com,1433;Database=ShiftGenius;User Id=admin;Password=Cc4JsFvC3xN6lPctMfYw;"));
 
 var app = builder.Build();
 
@@ -41,5 +51,12 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// Migrate the database and apply pending migrations
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+}
 
 app.Run();
