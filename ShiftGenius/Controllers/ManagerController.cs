@@ -1,12 +1,20 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShiftGenius.Models;
-using System.Collections.Generic;
+using System.Net;
+using System.Net.Mail;
+
 
 namespace ShiftGenius.Controllers
 {
     public class ManagerController : Controller
     {
+        private readonly ILogger<ManagerController> _logger;
+
+        public ManagerController(ILogger<ManagerController> logger)
+        {
+            _logger = logger;
+        }
         [Authorize(Policy = "IsManager")]
         public IActionResult Index()
         {
@@ -59,16 +67,12 @@ namespace ShiftGenius.Controllers
                 new ManagerAvailRequestModel { EmployeeID = "002", EmployeeName = "Joe Joe" },
             };
         }
-      
-        [HttpGet]
         public IActionResult InviteEmployee()
         {
-            var model = new InviteEmployeeViewModel(); 
-            return View(model);
+            return View();
         }
-
         [HttpPost]
-        public IActionResult SendInvitation(InviteEmployeeViewModel model)
+        public async Task<IActionResult> SendInvitation(InviteEmployeeViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -76,24 +80,50 @@ namespace ShiftGenius.Controllers
             }
 
             // Generate a unique registration link.
-            string registrationLink = GenerateRegistrationLink();
+            string registrationLink = GenerateUniqueToken();
 
-            // Send the registration link to the employee's email.
+            // Construct the full registration URL
+            var baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}";
+            var fullRegistrationLink = $"{baseUrl}/Home/SignUp?token={registrationLink}";
 
-            // We can display a success message or redirect to a confirmation page.
-            // For now, we'll redirect back to the form.
-            return RedirectToAction("SignUp", "Home");
+            try
+            {
+                using (var smtpClient = new SmtpClient("smtp.gmail.com"))
+                {
+                    smtpClient.Port = 587; // Set the SMTP port
+                    smtpClient.Credentials = new NetworkCredential("Miketatooine@gmail.com", "atzbmytrfzkhapqe");
+                    smtpClient.EnableSsl = true; // Enable SSL if required
+
+                    var mailMessage = new MailMessage();
+                    mailMessage.From = new MailAddress("Miketatooine@Gmail.com", "Michael from ShiftGenius");
+                    mailMessage.Subject = "Invitation to ShiftGenius";
+                    mailMessage.Body = $"You're invited to join ShiftGenius! Click on the following link to register: <a href='{fullRegistrationLink}'>{fullRegistrationLink}</a>";
+                    mailMessage.IsBodyHtml = true;
+                    mailMessage.To.Add(model.EmailAddress);
+
+                    // Send the email
+                    await smtpClient.SendMailAsync(mailMessage);
+                }
+
+                // Email sent successfully
+                TempData["SuccessMessage"] = "Invitation email sent successfully!";
+                return RedirectToAction("Index", "Manager");
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that occur during email sending
+                TempData["ErrorMessage"] = "Failed to send the invitation email.";
+                // Log the exception for debugging
+                _logger.LogError($"Failed to send the invitation email: {ex.Message}");
+                return RedirectToAction("Error");
+            }
         }
-
-        private string GenerateRegistrationLink()
+        private string GenerateUniqueToken()
         {
-
-            string token = "unique_token_here";
-
-            // Construct the registration link with the token.
-            return Url.Action("SignUp", "Home", new { area = "", token }, Request.Scheme);
+            // Generate a unique token using a GUID
+            Guid uniqueGuid = Guid.NewGuid();
+            string uniqueToken = uniqueGuid.ToString();
+            return uniqueToken;
         }
-
-
     }
 }

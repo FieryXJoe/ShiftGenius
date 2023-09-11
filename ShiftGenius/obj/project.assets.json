@@ -2207,6 +2207,32 @@
           }
         }
       },
+      "SendGrid/9.28.1": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "starkbank-ecdsa": "[1.3.3, 2.0.0)"
+        },
+        "compile": {
+          "lib/netstandard2.0/SendGrid.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/SendGrid.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "starkbank-ecdsa/1.3.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/StarkbankEcdsa.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/StarkbankEcdsa.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -6429,6 +6455,45 @@
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
       ]
     },
+    "SendGrid/9.28.1": {
+      "sha512": "LyIkgjd+svXuQxpqe5pvyOccyUdKcDqwnBNDPjyCngkKeVpXAOTAr3U1DBLWqHEbFHvu2UBFki3SJzDwxvJdfA==",
+      "type": "package",
+      "path": "sendgrid/9.28.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/SendGrid.dll",
+        "lib/net40/SendGrid.pdb",
+        "lib/net40/SendGrid.xml",
+        "lib/net452/SendGrid.dll",
+        "lib/net452/SendGrid.pdb",
+        "lib/net452/SendGrid.xml",
+        "lib/netstandard1.3/SendGrid.dll",
+        "lib/netstandard1.3/SendGrid.pdb",
+        "lib/netstandard1.3/SendGrid.xml",
+        "lib/netstandard2.0/SendGrid.dll",
+        "lib/netstandard2.0/SendGrid.pdb",
+        "lib/netstandard2.0/SendGrid.xml",
+        "sendgrid.9.28.1.nupkg.sha512",
+        "sendgrid.nuspec"
+      ]
+    },
+    "starkbank-ecdsa/1.3.3": {
+      "sha512": "OblOaKb1enXn+dSp7tsx9yjwV+/BEKM9jFhshIkZTwCk7LuTFTp+wSon6rFzuPiIiTGtvVWQNUw2slHjGktJog==",
+      "type": "package",
+      "path": "starkbank-ecdsa/1.3.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/StarkbankEcdsa.dll",
+        "lib/net452/StarkbankEcdsa.dll",
+        "lib/netstandard1.3/StarkbankEcdsa.dll",
+        "lib/netstandard2.0/StarkbankEcdsa.dll",
+        "lib/netstandard2.1/StarkbankEcdsa.dll",
+        "starkbank-ecdsa.1.3.3.nupkg.sha512",
+        "starkbank-ecdsa.nuspec"
+      ]
+    },
     "System.AppContext/4.3.0": {
       "sha512": "fKC+rmaLfeIzUhagxY17Q9siv/sPrjjKcfNg1Ic8IlQkZLipo8ljcaZQu4VtI4Jqbzjc2VTjzGLF6WmsRXAEgA==",
       "type": "package",
@@ -10241,6 +10306,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.14",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.14",
       "Microsoft.VisualStudio.Web.CodeGeneration >= 6.0.14",
+      "SendGrid >= 9.28.1",
       "ShiftGeniusLibDB >= 1.0.0"
     ]
   },
@@ -10251,11 +10317,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
+      "projectUniqueName": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
       "projectName": "ShiftGenius",
-      "projectPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
+      "projectPath": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
       "packagesPath": "C:\\Users\\ml102753\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\obj\\",
+      "outputPath": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGenius\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -10277,8 +10343,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
-              "projectPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj"
+            "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
+              "projectPath": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj"
             }
           }
         }
@@ -10310,6 +10376,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration": {
             "target": "Package",
             "version": "[6.0.14, )"
+          },
+          "SendGrid": {
+            "target": "Package",
+            "version": "[9.28.1, )"
           }
         },
         "imports": [

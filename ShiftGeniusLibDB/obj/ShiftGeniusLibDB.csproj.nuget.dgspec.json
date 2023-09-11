@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {}
+    "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
+    "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
+        "projectUniqueName": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
         "projectName": "ShiftGeniusLibDB",
-        "projectPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
+        "projectPath": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
         "packagesPath": "C:\\Users\\ml102753\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\obj\\",
+        "outputPath": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
