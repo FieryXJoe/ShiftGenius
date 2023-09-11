@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShiftGenius.Models;
+using ShiftGenius.Rules;
 using ShiftGeniusLibDB;
 using ShiftGeniusLibDB.Aggregate;
 using ShiftGeniusLibDB.Models;
@@ -122,60 +123,62 @@ namespace ShiftGenius.Controllers
             var rules = Basic_Functions.getRulesForOrganization(organizationId);
             return View("RuleList", rules);
         }
-        /*
         public IActionResult CreateRule()
         {
             return View("CreateRule");
         }
 
         [HttpPost]
-        public IActionResult CreateRule(Rule rule)
+        public IActionResult CreateRule(string type, int employeeId, int minHours) // or other parameters as needed
         {
             if (ModelState.IsValid)
             {
-                YourDLL.AddRule(rule);
+                RuleDecorator ruleDecorator = RuleBuilder.CreateRuleFromParams(type, employeeId, minHours /* ... other params */);
+                RuleBuilder.SaveRuleToDatabase(ruleDecorator);
+
                 return RedirectToAction("RuleList");
             }
-            return View("CreateRule", rule);
+            return View("CreateRule");
         }
 
+        // For editing an existing rule
         public IActionResult EditRule(int id)
         {
-            var rule = YourDLL.GetRuleById(id);
-            if (rule == null)
+            RuleDecorator ruleDecorator = RuleBuilder.LoadRuleFromDatabase(id);
+            if (ruleDecorator == null)
             {
                 return NotFound();
             }
-            return View("EditRule", rule);
+            return View("EditRule", ruleDecorator);
         }
 
         [HttpPost]
-        public IActionResult EditRule(Rule rule)
+        public IActionResult EditRule(RuleDecorator ruleDecorator)
         {
             if (ModelState.IsValid)
             {
-                YourDLL.UpdateRule(rule);
+                RuleBuilder.UpdateRuleInDatabase(ruleDecorator);
                 return RedirectToAction("RuleList");
             }
-            return View("EditRule", rule);
+            return View("EditRule", ruleDecorator);
         }
 
+        // For deleting a rule
         public IActionResult DeleteRule(int id)
         {
-            var rule = YourDLL.GetRuleById(id);
-            if (rule == null)
+            RuleDecorator ruleDecorator = RuleBuilder.LoadRuleFromDatabase(id);
+            if (ruleDecorator == null)
             {
                 return NotFound();
             }
-            return View("DeleteRule", rule);
+            return View("DeleteRule", ruleDecorator);
         }
 
         [HttpPost]
         public IActionResult DeleteRuleConfirmed(int id)
         {
-            YourDLL.DeleteRule(id);
+            RuleBuilder.DeleteRuleFromDatabase(id);
             return RedirectToAction("RuleList");
         }
-        */
     }
 }
