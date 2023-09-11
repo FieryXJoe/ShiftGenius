@@ -50,6 +50,16 @@ namespace ShiftGeniusLibDB.Aggregate
             }
         }
 
+        public Schedule(int organizationId) : this(organizationId, GetNextSaturday(), GetNextSaturday().AddDays(7))
+        {}
+
+        private static DateTime GetNextSaturday()
+        {
+            DateTime today = DateTime.Today;
+            int daysUntilSaturday = ((int)DayOfWeek.Saturday - (int)today.DayOfWeek + 7) % 7;
+            return today.AddDays(daysUntilSaturday);
+        }
+
         public IEnumerable<ScheduleDay> GetScheduledDays()
         {
             return ScheduleDays.AsReadOnly();

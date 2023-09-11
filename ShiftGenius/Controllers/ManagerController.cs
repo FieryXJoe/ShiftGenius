@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShiftGenius.Models;
+using ShiftGeniusLibDB;
+using ShiftGeniusLibDB.Aggregate;
+using ShiftGeniusLibDB.Models;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace ShiftGenius.Controllers
 {
@@ -12,9 +16,23 @@ namespace ShiftGenius.Controllers
         {
             return View();
         }
-        public IActionResult ScheduleGenerator()
+        public ActionResult ScheduleGenerator()
         {
-            return View();
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationID = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+
+            Schedule schedule = new Schedule(organizationID);
+            WeeklyScheduleViewModel model = new WeeklyScheduleViewModel
+            {
+                Schedule = schedule
+            };
+            return View(model);  // Looks for a view named "ScheduleGenerator.cshtml"
         }
         public IActionResult RuleList()
         {
