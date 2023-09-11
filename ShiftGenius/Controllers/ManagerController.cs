@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SendGrid;
-using SendGrid.Helpers.Mail;
 using ShiftGenius.Models;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 
 
 namespace ShiftGenius.Controllers
@@ -123,8 +118,6 @@ namespace ShiftGenius.Controllers
                 return RedirectToAction("Error");
             }
         }
-
-
         private string GenerateUniqueToken()
         {
             // Generate a unique token using a GUID
