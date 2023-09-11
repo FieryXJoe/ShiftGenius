@@ -34,6 +34,11 @@ namespace ShiftGenius.Rules
             ruleStrategy = new OperatingHoursStrategy(organizationID, s, startTime, endTime);
         }
 
+        public OperatingHoursDecorator(Schedule s) 
+        {
+            schedule = s;
+        }
+
         public override bool CheckSchedule(Schedule s)
         {
             return ruleStrategy.CheckSchedule(schedule);

@@ -31,6 +31,11 @@ namespace ShiftGenius.Rules
             ruleStrategy = new EmployeeMinHoursStrategy(employee, minHours, employee.Organization.OrganizationId, s);
         }
 
+        public MinHoursDecorator(Schedule s) 
+        {
+            schedule = s;
+        }
+
         public override bool CheckSchedule(Schedule s)
         {
             return ruleStrategy.CheckSchedule(schedule);

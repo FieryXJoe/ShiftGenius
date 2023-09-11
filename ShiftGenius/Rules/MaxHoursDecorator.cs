@@ -29,7 +29,10 @@ namespace ShiftGenius.Rules
 
             ruleStrategy = new EmployeeMaxHoursStrategy(employee, maxHours, employee.Organization.OrganizationId, s);
         }
-
+        public MaxHoursDecorator(Schedule s)
+        {
+            schedule = s;
+        }
         public override bool CheckSchedule(Schedule s)
         {
             return ruleStrategy.CheckSchedule(schedule);

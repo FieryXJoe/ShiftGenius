@@ -56,5 +56,59 @@ namespace ShiftGeniusLibDB.Aggregate
             }
             return defaultRule;
         }
+
+        public RuleDecorator buildSingleRule(string ruleType)
+        {
+            switch (ruleType)
+            {
+                case "MinHours":
+                    return new MinHoursDecorator(schedule);
+                case "MaxHours":
+                    return new MaxHoursDecorator(schedule);
+                case "OperatingHours":
+                    return new OperatingHoursDecorator(schedule);
+                case "MinEmployees":
+                    return new MinEmployeesDecorator(schedule);
+                default:
+                    throw new InvalidOperationException("Unsupported rule type");
+            }
+        }
+
+        public RuleDecorator buildSingleRule(ScheduleRule rule)
+        {
+            string jsonString = rule.Rule;
+            JObject ruleJson = JObject.Parse(jsonString);
+            string ruleType = (string)ruleJson["Type"];
+
+            switch (ruleType)
+            {
+                case "MinHours":
+                    return new MinHoursDecorator(jsonString, schedule);
+                case "MaxHours":
+                    return new MaxHoursDecorator(jsonString, schedule);
+                case "OperatingHours":
+                    return new OperatingHoursDecorator(jsonString, schedule);
+                case "MinEmployees":
+                    return new MinEmployeesDecorator(jsonString, schedule);
+                default:
+                    throw new InvalidOperationException("Unsupported rule type");
+            }
+        }
+
+        public void SaveRuleToDatabase(RuleDecorator ruleDecorator, int? ruleId = null)
+        {
+            string jsonRule = ruleDecorator.EncodeJSON();
+
+            if (ruleId.HasValue)
+            {
+                Basic_Functions.UpdateRule(ruleId.Value, jsonRule);
+            }
+            else
+            {
+                Basic_Functions.AddRule(organizationId, jsonRule);
+            }
+        }
+
+        
     }
 }

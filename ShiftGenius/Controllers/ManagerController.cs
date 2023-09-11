@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ShiftGenius.Models;
 using ShiftGeniusLibDB;
 using ShiftGeniusLibDB.Aggregate;
 using ShiftGeniusLibDB.Models;
 using System.Collections.Generic;
+using System.Data;
 using System.Security.Claims;
 
 namespace ShiftGenius.Controllers
@@ -33,10 +35,6 @@ namespace ShiftGenius.Controllers
                 Schedule = schedule
             };
             return View(model);  // Looks for a view named "ScheduleGenerator.cshtml"
-        }
-        public IActionResult RuleList()
-        {
-            return View();
         }
 
         [Authorize(Policy = "IsManager")]
@@ -112,6 +110,72 @@ namespace ShiftGenius.Controllers
             return Url.Action("SignUp", "Home", new { area = "", token }, Request.Scheme);
         }
 
+        public IActionResult RuleList()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            var organizationId = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+            var rules = Basic_Functions.getRulesForOrganization(organizationId);
+            return View("RuleList", rules);
+        }
+        /*
+        public IActionResult CreateRule()
+        {
+            return View("CreateRule");
+        }
 
+        [HttpPost]
+        public IActionResult CreateRule(Rule rule)
+        {
+            if (ModelState.IsValid)
+            {
+                YourDLL.AddRule(rule);
+                return RedirectToAction("RuleList");
+            }
+            return View("CreateRule", rule);
+        }
+
+        public IActionResult EditRule(int id)
+        {
+            var rule = YourDLL.GetRuleById(id);
+            if (rule == null)
+            {
+                return NotFound();
+            }
+            return View("EditRule", rule);
+        }
+
+        [HttpPost]
+        public IActionResult EditRule(Rule rule)
+        {
+            if (ModelState.IsValid)
+            {
+                YourDLL.UpdateRule(rule);
+                return RedirectToAction("RuleList");
+            }
+            return View("EditRule", rule);
+        }
+
+        public IActionResult DeleteRule(int id)
+        {
+            var rule = YourDLL.GetRuleById(id);
+            if (rule == null)
+            {
+                return NotFound();
+            }
+            return View("DeleteRule", rule);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteRuleConfirmed(int id)
+        {
+            YourDLL.DeleteRule(id);
+            return RedirectToAction("RuleList");
+        }
+        */
     }
 }

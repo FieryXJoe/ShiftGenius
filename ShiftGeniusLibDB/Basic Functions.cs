@@ -1,6 +1,7 @@
 ﻿using ShiftGeniusLibDB.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -182,6 +183,40 @@ namespace ShiftGeniusLibDB
                 {
                     return null;
                 }
+            }
+        }
+        public static bool UpdateRule(int ruleID, String jsonRule)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var rule = context.ScheduleRules.Where(r => r.ScheduleRuleId == ruleID).FirstOrDefault();
+                if (rule != null)
+                {
+                    rule.Rule = jsonRule;
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static bool AddRule(int organizationID, String jsonRule)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var rule = new ScheduleRule
+                {
+                    OrganizationId = organizationID,
+                    Rule = jsonRule,
+                    DateCreated = DateTime.Now,
+                    Approved = true
+                };
+                context.ScheduleRules.Add(rule);
+                context.SaveChanges();
+                return true;
             }
         }
     }
