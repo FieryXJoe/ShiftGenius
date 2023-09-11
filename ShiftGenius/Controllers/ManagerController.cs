@@ -4,12 +4,22 @@ using SendGrid;
 using SendGrid.Helpers.Mail;
 using ShiftGenius.Models;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Mail;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+
 
 namespace ShiftGenius.Controllers
 {
     public class ManagerController : Controller
     {
+        private readonly ILogger<ManagerController> _logger;
+
+        public ManagerController(ILogger<ManagerController> logger)
+        {
+            _logger = logger;
+        }
         [Authorize(Policy = "IsManager")]
         public IActionResult Index()
         {
@@ -78,34 +88,37 @@ namespace ShiftGenius.Controllers
             // Generate a unique registration link.
             string registrationLink = GenerateUniqueToken();
 
-            // Send the registration link to the employee's email using SendGrid.
-            var sendGridApiKey = "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"; 
-            var client = new SendGridClient(sendGridApiKey);
-
-            var msg = new SendGridMessage()
+            try
             {
-                From = new EmailAddress("ml102753@ShiftGenius.com", "Michael Lopez"),
-                Subject = "Invitation to ShiftGenius",
-                PlainTextContent = $"You're invited to join ShiftGenius! Click on the following link to register: {registrationLink}",
-                HtmlContent = $"<p>You're invited to join ShiftGenius! Click on the following link to register: <a href='{registrationLink}'>{registrationLink}</a></p>"
-            };
+                using (var smtpClient = new SmtpClient("smtp.gmail.com"))
+                {
+                    smtpClient.Port = 587; // Set the SMTP port
+                    smtpClient.Credentials = new NetworkCredential("Miketatooine@gmail.com", "atzbmytrfzkhapqe");
+                    smtpClient.EnableSsl = true; // Enable SSL if required
 
-            msg.AddTo(model.EmailAddress);
+                    var mailMessage = new MailMessage();
+                    mailMessage.From = new MailAddress("Miketatooine@Gmail.com", "Michael from ShiftGenius");
+                    mailMessage.Subject = "Invitation to ShiftGenius";
+                    mailMessage.Body = $"You're invited to join ShiftGenius! Click on the following link to register: {registrationLink}";
+                    mailMessage.IsBodyHtml = true;
+                    mailMessage.To.Add(model.EmailAddress);
 
-            var response = await client.SendEmailAsync(msg);
+                    // Send the email
+                    await smtpClient.SendMailAsync(mailMessage);
+                }
 
-            // Check if the email was sent successfully (you can add error handling here)
-            if (response.StatusCode != System.Net.HttpStatusCode.Accepted)
+                // Email sent successfully
+                TempData["SuccessMessage"] = "Invitation email sent successfully!";
+                return RedirectToAction("SignUp", "Home");
+            }
+            catch (Exception ex)
             {
-                // Handle the case where the email failed to send.
-                // You can log the error or display a message to the user.
+                // Handle any exceptions that occur during email sending
                 TempData["ErrorMessage"] = "Failed to send the invitation email.";
+                // Log the exception for debugging
+                _logger.LogError($"Failed to send the invitation email: {ex.Message}");
                 return RedirectToAction("Error");
             }
-
-            // Email sent successfully
-            TempData["SuccessMessage"] = "Invitation email sent successfully!";
-            return RedirectToAction("SignUp", "Home");
         }
 
         private string GenerateUniqueToken()
@@ -113,7 +126,6 @@ namespace ShiftGenius.Controllers
             // Generate a unique token using a GUID
             Guid uniqueGuid = Guid.NewGuid();
             string uniqueToken = uniqueGuid.ToString();
-
             return uniqueToken;
         }
     }

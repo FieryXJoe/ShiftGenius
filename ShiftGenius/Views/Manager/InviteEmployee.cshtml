@@ -2,26 +2,11 @@
 
 <h2>Invite an Employee</h2>
 
-@* <!-- Success Message -->
-@if (TempData.ContainsKey("SuccessMessage"))
-{
-    <div class="alert alert-success">
-        @TempData["SuccessMessage"]
-    </div>
-}
-
-<!-- Error Message -->
-@if (TempData.ContainsKey("ErrorMessage"))
-{
-    <div class="alert alert-danger">
-        @TempData["ErrorMessage"]
-    </div>
-} *@
-
 <form method="post" asp-action="SendInvitation">
     <div class="form-group">
         <label for="inputEmail">Email Address</label>
         <input type="email" class="form-control" id="inputEmail" asp-for="EmailAddress" required>
+        <span asp-validation-for="EmailAddress" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Send Invitation</button>
 </form>
