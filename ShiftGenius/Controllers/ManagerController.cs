@@ -129,12 +129,21 @@ namespace ShiftGenius.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateRule(string type, int employeeId, int minHours) // or other parameters as needed
+        public IActionResult CreateRule(string type, string json, int? employeeId)
         {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationID = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+            RuleBuilder ruleBuilder = new RuleBuilder(organizationID);
+            
             if (ModelState.IsValid)
             {
-                RuleDecorator ruleDecorator = RuleBuilder.CreateRuleFromParams(type, employeeId, minHours /* ... other params */);
-                RuleBuilder.SaveRuleToDatabase(ruleDecorator);
+                RuleDecorator ruleDecorator = ruleBuilder.buildSingleRule(type);
+                ruleBuilder.SaveRuleToDatabase(ruleDecorator);
 
                 return RedirectToAction("RuleList");
             }
@@ -144,7 +153,16 @@ namespace ShiftGenius.Controllers
         // For editing an existing rule
         public IActionResult EditRule(int id)
         {
-            RuleDecorator ruleDecorator = RuleBuilder.LoadRuleFromDatabase(id);
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationID = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+            RuleBuilder ruleBuilder = new RuleBuilder(organizationID);
+
+            RuleDecorator ruleDecorator = ruleBuilder.LoadRuleFromDatabase(id);
             if (ruleDecorator == null)
             {
                 return NotFound();
@@ -153,11 +171,20 @@ namespace ShiftGenius.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditRule(RuleDecorator ruleDecorator)
+        public IActionResult EditRule(RuleDecorator ruleDecorator, int id)
         {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationID = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+            RuleBuilder ruleBuilder = new RuleBuilder(organizationID);
+
             if (ModelState.IsValid)
             {
-                RuleBuilder.UpdateRuleInDatabase(ruleDecorator);
+                ruleBuilder.SaveRuleToDatabase(ruleDecorator, id);
                 return RedirectToAction("RuleList");
             }
             return View("EditRule", ruleDecorator);
@@ -166,7 +193,16 @@ namespace ShiftGenius.Controllers
         // For deleting a rule
         public IActionResult DeleteRule(int id)
         {
-            RuleDecorator ruleDecorator = RuleBuilder.LoadRuleFromDatabase(id);
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationID = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+            RuleBuilder ruleBuilder = new RuleBuilder(organizationID);
+
+            RuleDecorator ruleDecorator = ruleBuilder.LoadRuleFromDatabase(id);
             if (ruleDecorator == null)
             {
                 return NotFound();
@@ -177,7 +213,7 @@ namespace ShiftGenius.Controllers
         [HttpPost]
         public IActionResult DeleteRuleConfirmed(int id)
         {
-            RuleBuilder.DeleteRuleFromDatabase(id);
+            Basic_Functions.DeleteRuleFromDatabase(id);
             return RedirectToAction("RuleList");
         }
     }

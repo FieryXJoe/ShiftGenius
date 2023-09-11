@@ -219,5 +219,40 @@ namespace ShiftGeniusLibDB
                 return true;
             }
         }
+        
+        public static ScheduleRule getRuleById(int id)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var rule = context.ScheduleRules.Where(r => r.ScheduleRuleId == id).FirstOrDefault();
+                if (rule != null)
+                {
+                    return rule;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static bool deleteRule(int id)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var rule = context.ScheduleRules.Where(r => r.ScheduleRuleId == id).FirstOrDefault();
+                if (rule != null)
+                {
+                    context.ScheduleRules.Remove(rule);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+    }
     }
 }

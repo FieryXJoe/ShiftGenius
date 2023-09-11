@@ -16,6 +16,11 @@ namespace ShiftGeniusLibDB.Aggregate
             schedule = s;
         }
 
+        public RuleBuilder(int organizationId)
+        {
+            this.organizationId = organizationId;
+            schedule = new Schedule(organizationId);
+        }
         public DefaultRule BuildRules()
         {
             List<ScheduleRule> rules = Basic_Functions.getRulesForOrganization(organizationId);
@@ -109,6 +114,10 @@ namespace ShiftGeniusLibDB.Aggregate
             }
         }
 
-        
+        public RuleDecorator LoadRuleFromDatabase(int id)
+        {
+            ScheduleRule rule = Basic_Functions.GetRuleById(id);
+            return buildSingleRule(rule);
+        }
     }
 }
