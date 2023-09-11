@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj": {}
+    "C:\\Users\\jsher\\source\\repos\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
+    "C:\\Users\\jsher\\source\\repos\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
+        "projectUniqueName": "C:\\Users\\jsher\\source\\repos\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
         "projectName": "ShiftGeniusLibDB",
-        "projectPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
-        "packagesPath": "C:\\Users\\ml102753\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\obj\\",
+        "projectPath": "C:\\Users\\jsher\\source\\repos\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
+        "packagesPath": "C:\\Users\\jsher\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jsher\\source\\repos\\ShiftGenius\\ShiftGeniusLibDB\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ml102753\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\jsher\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -80,25 +75,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj": {
+    "C:\\Users\\jsher\\source\\repos\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
+        "projectUniqueName": "C:\\Users\\jsher\\source\\repos\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
         "projectName": "ShiftGenius",
-        "projectPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
-        "packagesPath": "C:\\Users\\ml102753\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGenius\\obj\\",
+        "projectPath": "C:\\Users\\jsher\\source\\repos\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
+        "packagesPath": "C:\\Users\\jsher\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jsher\\source\\repos\\ShiftGenius\\ShiftGenius\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ml102753\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\jsher\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -106,15 +97,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
-                "projectPath": "C:\\Users\\ml102753\\OneDrive - harriscomputer\\Desktop\\seniorProjNew\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj"
+              "C:\\Users\\jsher\\source\\repos\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
+                "projectPath": "C:\\Users\\jsher\\source\\repos\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj"
               }
             }
           }
@@ -167,7 +158,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
