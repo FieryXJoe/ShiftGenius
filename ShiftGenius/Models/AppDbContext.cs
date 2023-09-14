@@ -7,5 +7,4 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<ShiftGeniusLibDB.Models.TimeOffRequest> TimeOffRequests { get; set; }
-    //TODO: public DbSet<ShiftGeniusLibDB.Models.Availibility>
 }

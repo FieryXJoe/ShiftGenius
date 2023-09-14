@@ -4,29 +4,38 @@ using ShiftGenius.Models;
 using System.Net;
 using System.Net.Mail;
 
-
 namespace ShiftGenius.Controllers
 {
     public class ManagerController : Controller
     {
         private readonly ILogger<ManagerController> _logger;
+        private readonly AppDbContext _dbContext;
 
-        public ManagerController(ILogger<ManagerController> logger)
+        public ManagerController(ILogger<ManagerController> logger, AppDbContext dbContext)
         {
             _logger = logger;
+            _dbContext = dbContext; 
         }
+
         [Authorize(Policy = "IsManager")]
         public IActionResult Index()
         {
             return View();
         }
+
         public IActionResult ScheduleGenerator()
         {
             return View();
         }
+
         public IActionResult RuleList()
         {
             return View();
+        }
+
+        public static string FormatNullableDate(DateTime? date)
+        {
+            return date.HasValue ? date.Value.ToShortDateString() : "N/A";
         }
 
         [Authorize(Policy = "IsManager")]
@@ -34,10 +43,87 @@ namespace ShiftGenius.Controllers
         {
             var viewModel = new ManagerTimeOffRequestsViewModel
             {
-                TimeOffRequests = GetMockTimeOffRequests() // Replace with the logic to retrieve time-off requests
+                TimeOffRequests = GetTimeOffRequestsFromDatabase()
+                    .Where(request => request != null)
+                    .Select(request => new TimeOffRequestViewModel
+                    {
+                        RequestID = request.RequestID,
+                        EmployeeID = request.EmployeeID.ToString(),
+                        StartDate = FormatNullableDate(request?.StartDate),
+                        EndDate = FormatNullableDate(request?.EndDate),
+                        Type = request.Type ?? "N/A",
+                        Status = request.Status != null ? request.Status : "N/A"
+                    })
+                    .ToList()
             };
 
             return View(viewModel);
+        }
+
+
+        [HttpPost]
+        public IActionResult ProcessTimeOffRequests(List<TimeOffRequestViewModel> timeOffRequests)
+        {
+            if (timeOffRequests != null && timeOffRequests.Any())
+            {
+                foreach (var requestViewModel in timeOffRequests)
+                {
+                    // Retrieve the request from the database by ID
+                    var existingRequest = _dbContext.TimeOffRequests.FirstOrDefault(r => r.RequestID == requestViewModel.RequestID);
+
+                    if (existingRequest != null)
+                    {
+                        // Update the status based on the selected decision
+                        if (requestViewModel.Status == "Approve")
+                        {
+                            existingRequest.Status = "Approved";
+                        }
+                        else if (requestViewModel.Status == "Deny")
+                        {
+                            existingRequest.Status = "Denied";
+                        }
+
+                        // Save changes to the database
+                        _dbContext.SaveChanges();
+                    }
+                }
+
+                // Redirect back to the manager's time off requests page
+                return RedirectToAction("ManagerTimeOffRequests");
+            }
+
+            // Handle the case where no requests were submitted
+            return RedirectToAction("ManagerTimeOffRequests");
+        }
+
+        public List<ShiftGeniusLibDB.Models.TimeOffRequest> GetTimeOffRequestsFromDatabase()
+        {
+            try
+            {
+                // Fetch time-off requests from the database
+                var requests = _dbContext.TimeOffRequests.ToList();
+
+                // Handle null values for specific properties, if needed
+                foreach (var request in requests)
+                {
+                    if (request.Status == null)
+                    {
+                        // Handle the null status, e.g., set it to a default value
+                        request.Status = "N/A";
+                    }
+
+                    // Handle other properties with potential null values as needed
+                }
+
+                return requests;
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception (e.g., log it) or return an empty list
+                // You might want to log the exception for debugging purposes
+                _logger.LogError($"Error while fetching time-off requests: {ex.Message}");
+                return new List<ShiftGeniusLibDB.Models.TimeOffRequest>();
+            }
         }
 
         [Authorize(Policy = "IsManager")]
@@ -47,18 +133,6 @@ namespace ShiftGenius.Controllers
             return View(availabilityRequests);
         }
 
-        // This is just a mock function to generate sample data, replace it with actual data retrieval logic
-
-        private List<TimeOffRequest> GetMockTimeOffRequests()
-        {
-            return new List<TimeOffRequest>
-            {
-                new TimeOffRequest { EmployeeName = "Joe", StartDate = "2023-08-15", EndDate = "2023-08-17", TypeOfTimeOff = "Vacation" },
-                new TimeOffRequest { EmployeeName = "Mike", StartDate = "2023-08-18", EndDate = "2023-08-20", TypeOfTimeOff = "Sick Leave" }
-            };
-        }
-
-        //Logic to be updating the employee's avail
         private List<ManagerAvailRequestModel> GetAvailabilityRequests()
         {
             return new List<ManagerAvailRequestModel>
@@ -67,10 +141,12 @@ namespace ShiftGenius.Controllers
                 new ManagerAvailRequestModel { EmployeeID = "002", EmployeeName = "Joe Joe" },
             };
         }
+
         public IActionResult InviteEmployee()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> SendInvitation(InviteEmployeeViewModel model)
         {
@@ -118,6 +194,7 @@ namespace ShiftGenius.Controllers
                 return RedirectToAction("Error");
             }
         }
+
         private string GenerateUniqueToken()
         {
             // Generate a unique token using a GUID
