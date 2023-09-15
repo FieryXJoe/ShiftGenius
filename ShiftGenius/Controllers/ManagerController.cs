@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ShiftGenius.Models;
 using System.Net;
 using System.Net.Mail;
+using System.Linq;
 
 namespace ShiftGenius.Controllers
 {
@@ -14,7 +15,7 @@ namespace ShiftGenius.Controllers
         public ManagerController(ILogger<ManagerController> logger, AppDbContext dbContext)
         {
             _logger = logger;
-            _dbContext = dbContext; 
+            _dbContext = dbContext;
         }
 
         [Authorize(Policy = "IsManager")]
@@ -38,26 +39,29 @@ namespace ShiftGenius.Controllers
             return date.HasValue ? date.Value.ToShortDateString() : "N/A";
         }
 
+        private List<TimeOffRequestViewModel> GetTimeOffRequestsViewModels()
+        {
+            return GetTimeOffRequestsFromDatabase()
+                .Where(request => request != null)
+                .Select(request => new TimeOffRequestViewModel
+                {
+                    RequestID = request.RequestID,
+                    EmployeeID = request.EmployeeID.ToString(),
+                    StartDate = FormatNullableDate(request?.StartDate),
+                    EndDate = FormatNullableDate(request?.EndDate),
+                    Type = request.Type ?? "N/A",
+                    Status = request.Status != null ? request.Status : "N/A"
+                })
+                .ToList();
+        }
+
         [Authorize(Policy = "IsManager")]
         public IActionResult ManagerTimeOffRequests()
         {
-            var viewModel = new ManagerTimeOffRequestsViewModel
-            {
-                TimeOffRequests = GetTimeOffRequestsFromDatabase()
-                    .Where(request => request != null)
-                    .Select(request => new TimeOffRequestViewModel
-                    {
-                        RequestID = request.RequestID,
-                        EmployeeID = request.EmployeeID.ToString(),
-                        StartDate = FormatNullableDate(request?.StartDate),
-                        EndDate = FormatNullableDate(request?.EndDate),
-                        Type = request.Type ?? "N/A",
-                        Status = request.Status != null ? request.Status : "N/A"
-                    })
-                    .ToList()
-            };
+            // Fetch time-off requests from the database
+            var timeOffRequests = GetTimeOffRequestsFromDatabase();
 
-            return View(viewModel);
+            return View("ManagerTimeOffRequests", timeOffRequests);
         }
 
 

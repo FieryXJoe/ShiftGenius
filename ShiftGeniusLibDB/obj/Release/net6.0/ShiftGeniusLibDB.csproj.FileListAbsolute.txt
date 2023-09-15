@@ -40,3 +40,17 @@ C:\Users\ml102753\Source\Repos\FieryXJoe\ShiftGenius\ShiftGeniusLibDB\obj\Releas
 C:\Users\ml102753\Source\Repos\FieryXJoe\ShiftGenius\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.pdb
 C:\Users\ml102753\Source\Repos\FieryXJoe\ShiftGenius\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.genruntimeconfig.cache
 C:\Users\ml102753\Source\Repos\FieryXJoe\ShiftGenius\ShiftGeniusLibDB\obj\Release\net6.0\ref\ShiftGeniusLibDB.dll
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\bin\Release\net6.0\ShiftGeniusLibDB.deps.json
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\bin\Release\net6.0\ShiftGeniusLibDB.runtimeconfig.json
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\bin\Release\net6.0\ShiftGeniusLibDB.dll
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\bin\Release\net6.0\ShiftGeniusLibDB.pdb
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.csproj.AssemblyReference.cache
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.AssemblyInfoInputs.cache
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.AssemblyInfo.cs
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.csproj.CoreCompileInputs.cache
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.dll
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\obj\Release\net6.0\refint\ShiftGeniusLibDB.dll
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.pdb
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\obj\Release\net6.0\ShiftGeniusLibDB.genruntimeconfig.cache
+C:\Users\ml102753\Source\Repos\ShiftGenius22\ShiftGeniusLibDB\obj\Release\net6.0\ref\ShiftGeniusLibDB.dll
