@@ -12,5 +12,6 @@ namespace ShiftGenius.Models
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public string TypeOfTimeOff { get; set; }
+
     }
 }

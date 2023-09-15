@@ -19,6 +19,13 @@ namespace ShiftGenius.Models
         public DateTime EndDate { get; set; }
 
         [Display(Name = "Type of Time Off")]
-        public string? Type { get; set; } // nullable
+        [Required(ErrorMessage = "Type of Time Off is required.")]
+        public string Type { get; set; }
+
+        [Display(Name = "Employee ID")]
+        [Required(ErrorMessage = "Employee ID is required.")]
+        public int EmployeeID { get; set; }
+
+
     }
 }
