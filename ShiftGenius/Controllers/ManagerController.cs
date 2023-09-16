@@ -4,6 +4,7 @@ using ShiftGenius.Models;
 using System.Net;
 using System.Net.Mail;
 using System.Linq;
+using ShiftGeniusLibDB;
 
 namespace ShiftGenius.Controllers
 {
@@ -11,11 +12,13 @@ namespace ShiftGenius.Controllers
     {
         private readonly ILogger<ManagerController> _logger;
         private readonly AppDbContext _dbContext;
+        private List<ShiftGeniusLibDB.Models.TimeOffRequest> _timeOffRequestsData; 
 
         public ManagerController(ILogger<ManagerController> logger, AppDbContext dbContext)
         {
             _logger = logger;
             _dbContext = dbContext;
+            _timeOffRequestsData = GetTimeOffRequestsFromDatabase(); 
         }
 
         [Authorize(Policy = "IsManager")]
@@ -81,17 +84,58 @@ namespace ShiftGenius.Controllers
             return View("ManagerTimeOffRequests", viewModel);
         }
 
+        [HttpPost]
+        public IActionResult DeleteTimeOffRequest(int requestId)
+        {
+            try
+            {
+                // Retrieve the request from the stored data by ID
+                var existingRequest = _timeOffRequestsData.FirstOrDefault(r => r.RequestID == requestId);
 
+                if (existingRequest != null)
+                {
+                    // Remove the request from the stored data
+                    _timeOffRequestsData.Remove(existingRequest);
+                    // You can optionally remove it from the database here as well
+                    //_dbContext.TimeOffRequests.Remove(existingRequest);
+                    //_dbContext.SaveChanges();
+
+                    TempData["SuccessMessage"] = "Time-off request deleted successfully!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Time-off request not found.";
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                _logger.LogError($"Error deleting time-off request: {ex.Message}");
+                TempData["ErrorMessage"] = "An error occurred while deleting the time-off request.";
+            }
+
+            // Redirect back to the manager's time off requests page
+            return RedirectToAction("ManagerTimeOffRequests");
+        }
 
         [HttpPost]
         public IActionResult ProcessTimeOffRequests(List<TimeOffRequestViewModel> timeOffRequests)
         {
-            if (timeOffRequests != null && timeOffRequests.Any())
+            if (timeOffRequests == null || !timeOffRequests.Any())
+            {
+                // Handle the case where no requests were submitted
+                TempData["ErrorMessage"] = "No time-off requests were submitted.";
+                return RedirectToAction("ManagerTimeOffRequests");
+            }
+
+            using var transaction = _dbContext.Database.BeginTransaction();
+
+            try
             {
                 foreach (var requestViewModel in timeOffRequests)
                 {
-                    // Retrieve the request from the database by ID
-                    var existingRequest = _dbContext.TimeOffRequests.FirstOrDefault(r => r.RequestID == requestViewModel.RequestID);
+                    // Retrieve the request from the stored data by ID
+                    var existingRequest = _timeOffRequestsData.FirstOrDefault(r => r.RequestID == requestViewModel.RequestID);
 
                     if (existingRequest != null)
                     {
@@ -102,20 +146,35 @@ namespace ShiftGenius.Controllers
                         }
                         else if (requestViewModel.Status == "Deny")
                         {
-                            existingRequest.Status = "Denied";
+                            // Remove the request from the stored data
+                            _timeOffRequestsData.Remove(existingRequest);
+                            // You can optionally remove it from the database here as well
+                            //_dbContext.TimeOffRequests.Remove(existingRequest);
                         }
-
-                        // Save changes to the database
-                        _dbContext.SaveChanges();
                     }
                 }
 
+                // Save changes to the database
+                _dbContext.SaveChanges();
+
+                // Commit the transaction
+                transaction.Commit();
+
                 // Redirect back to the manager's time off requests page
+                TempData["SuccessMessage"] = "Time-off requests updated successfully!";
                 return RedirectToAction("ManagerTimeOffRequests");
             }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that occur during the transaction
+                transaction.Rollback();
 
-            // Handle the case where no requests were submitted
-            return RedirectToAction("ManagerTimeOffRequests");
+                // Log the exception for debugging
+                _logger.LogError($"Failed to update time-off requests: {ex.Message}");
+
+                TempData["ErrorMessage"] = "Failed to update time-off requests. Please try again later.";
+                return RedirectToAction("ManagerTimeOffRequests");
+            }
         }
 
         public List<ShiftGeniusLibDB.Models.TimeOffRequest> GetTimeOffRequestsFromDatabase()

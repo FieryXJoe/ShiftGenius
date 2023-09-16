@@ -6,10 +6,11 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Employee Name</th>
+                    <th>Employee ID</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th>Type of Time Off</th>
+                    <th>Type</th>
+                    <th>Request Date</th>
                     <th>Decision</th>
                 </tr>
             </thead>
@@ -28,8 +29,16 @@
                                 <option value="Deny">Deny</option>
                             </select>
                         </td>
+                        <td>
+                            <form method="post" action="@Url.Action("DeleteTimeOffRequest", "Manager")">
+                                @Html.Hidden("requestId", request.RequestID)
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 }
+
+
             </tbody>
         </table>
 
