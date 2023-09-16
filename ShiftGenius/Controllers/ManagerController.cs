@@ -55,14 +55,32 @@ namespace ShiftGenius.Controllers
                 .ToList();
         }
 
-        [Authorize(Policy = "IsManager")]
         public IActionResult ManagerTimeOffRequests()
         {
             // Fetch time-off requests from the database
             var timeOffRequests = GetTimeOffRequestsFromDatabase();
 
-            return View("ManagerTimeOffRequests", timeOffRequests);
+            // Convert the list of TimeOffRequest to TimeOffRequestViewModel
+            var timeOffRequestViewModels = timeOffRequests.Select(request => new TimeOffRequestViewModel
+            {
+                RequestID = request.RequestID,
+                EmployeeID = request.EmployeeID.ToString(),
+                StartDate = FormatNullableDate(request.StartDate),
+                EndDate = FormatNullableDate(request.EndDate),
+                Type = request.Type ?? "N/A",
+                RequestDate = request.RequestDate,
+                Status = request.Status ?? "N/A"
+            }).ToList();
+
+            // Create an instance of ManagerTimeOffRequestsViewModel and set its TimeOffRequests property
+            var viewModel = new ManagerTimeOffRequestsViewModel
+            {
+                TimeOffRequests = timeOffRequestViewModels
+            };
+
+            return View("ManagerTimeOffRequests", viewModel);
         }
+
 
 
         [HttpPost]
@@ -104,10 +122,10 @@ namespace ShiftGenius.Controllers
         {
             try
             {
-                // Fetch time-off requests from the database
+                
                 var requests = _dbContext.TimeOffRequests.ToList();
 
-                // Handle null values for specific properties, if needed
+                
                 foreach (var request in requests)
                 {
                     if (request.Status == null)
@@ -115,16 +133,13 @@ namespace ShiftGenius.Controllers
                         // Handle the null status, e.g., set it to a default value
                         request.Status = "N/A";
                     }
-
-                    // Handle other properties with potential null values as needed
                 }
 
                 return requests;
             }
             catch (Exception ex)
             {
-                // Handle the exception (e.g., log it) or return an empty list
-                // You might want to log the exception for debugging purposes
+                
                 _logger.LogError($"Error while fetching time-off requests: {ex.Message}");
                 return new List<ShiftGeniusLibDB.Models.TimeOffRequest>();
             }
