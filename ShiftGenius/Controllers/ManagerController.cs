@@ -120,7 +120,7 @@ namespace ShiftGenius.Controllers
             }
             int userId = int.Parse(userIdClaim.Value);
             var organizationId = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
-            var rules = Basic_Functions.getRulesForOrganization(organizationId);
+            var rules = Basic_Functions.GetRulesForOrganization(organizationId);
             return View("RuleList", rules);
         }
         public IActionResult CreateRule()

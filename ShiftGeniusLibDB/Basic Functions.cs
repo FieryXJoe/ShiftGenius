@@ -170,7 +170,7 @@ namespace ShiftGeniusLibDB
             }
         }
 
-        public static List<ScheduleRule> getRulesForOrganization(int organizationID)
+        public static List<ScheduleRule> GetRulesForOrganization(int organizationID)
         {
             using (var context = new ShiftGeniusContext())
             {

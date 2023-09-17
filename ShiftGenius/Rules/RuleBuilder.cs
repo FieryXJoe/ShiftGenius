@@ -23,7 +23,7 @@ namespace ShiftGeniusLibDB.Aggregate
         }
         public DefaultRule BuildRules()
         {
-            List<ScheduleRule> rules = Basic_Functions.getRulesForOrganization(organizationId);
+            List<ScheduleRule> rules = Basic_Functions.GetRulesForOrganization(organizationId);
 
             DefaultRule defaultRule = new DefaultRule(schedule);
             RuleComponent lastRule = defaultRule;
@@ -118,6 +118,15 @@ namespace ShiftGeniusLibDB.Aggregate
         {
             ScheduleRule rule = Basic_Functions.GetRuleById(id);
             return buildSingleRule(rule);
+        }
+
+        public static string GetRuleType(ScheduleRule rule)
+        {
+            string jsonString = rule.Rule;
+            JObject ruleJson = JObject.Parse(jsonString);
+            string ruleType = (string)ruleJson["Type"];
+
+            return ruleType;
         }
     }
 }
