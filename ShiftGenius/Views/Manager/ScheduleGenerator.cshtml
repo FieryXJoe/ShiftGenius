@@ -1,8 +1,12 @@
-﻿@*
+﻿@using ShiftGeniusLibDB.Models;
+@using ShiftGeniusLibDB;
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    var groupedByDayOfWeek = Model.Schedule.ScheduleDays
+    var scheduleDays = (List<ScheduleDay>) Model.Schedule.ScheduleDays;
+
+    var groupedByDayOfWeek = scheduleDays
                                   .GroupBy(sd => sd.Day.DayOfWeek)
                                   .OrderBy(g => (int)g.Key);
 }
@@ -27,7 +31,7 @@
                                     foreach (var employeeScheduled in scheduleDay.EmployeeScheduleds)
                                     {
                                         <div>
-                                            @employeeScheduled.EmployeeName:
+                                            @Basic_Functions.getEmployeeNameByID(employeeScheduled.EmployeeScheduledId)
                                             <br />
                                             @employeeScheduled.StartTime - @employeeScheduled.EndTime
                                             <br />

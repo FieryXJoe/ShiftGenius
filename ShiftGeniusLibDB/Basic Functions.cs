@@ -220,7 +220,7 @@ namespace ShiftGeniusLibDB
             }
         }
         
-        public static ScheduleRule getRuleById(int id)
+        public static ScheduleRule GetRuleById(int id)
         {
             using (var context = new ShiftGeniusContext())
             {
@@ -236,7 +236,7 @@ namespace ShiftGeniusLibDB
             }
         }
 
-        public static bool deleteRule(int id)
+        public static bool DeleteRule(int id)
         {
             using (var context = new ShiftGeniusContext())
             {
@@ -253,6 +253,5 @@ namespace ShiftGeniusLibDB
                 }
             }
         }
-    }
     }
 }

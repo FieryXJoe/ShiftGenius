@@ -213,7 +213,7 @@ namespace ShiftGenius.Controllers
         [HttpPost]
         public IActionResult DeleteRuleConfirmed(int id)
         {
-            Basic_Functions.DeleteRuleFromDatabase(id);
+            Basic_Functions.DeleteRule(id);
             return RedirectToAction("RuleList");
         }
     }
