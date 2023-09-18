@@ -17,9 +17,10 @@ namespace ShiftGenius.Rules
         {
             employee = e;
             maxHours = max;
-
-            ruleStrategy = new EmployeeMaxHoursStrategy(employee, maxHours, employee.Organization.OrganizationId, s);
             schedule = s;
+
+            ruleStrategy = new EmployeeMaxHoursStrategy(employee, maxHours, employee.OrganizationId.Value, schedule);
+
         }
 
         public MaxHoursDecorator(String json, Schedule s)

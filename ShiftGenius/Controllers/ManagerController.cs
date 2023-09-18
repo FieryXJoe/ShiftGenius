@@ -211,9 +211,9 @@ namespace ShiftGenius.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteRuleConfirmed(int id)
+        public IActionResult DeleteRuleConfirmed(int ruleId)
         {
-            Basic_Functions.DeleteRule(id);
+            Basic_Functions.DeleteRule(ruleId);
             return RedirectToAction("RuleList");
         }
 
@@ -267,13 +267,56 @@ namespace ShiftGenius.Controllers
         public IActionResult ViewRule(int id)
         {
             ScheduleRule rule = Basic_Functions.GetRuleById(id);
-            
+
             if (rule == null)
             {
                 return NotFound();
             }
 
             return View(rule);
+        }
+        public IActionResult AddMaxHours()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            ViewBag.Employees = Basic_Functions.GetEmployeesInOrganization(Basic_Functions.getEmployeeByID(userId).OrganizationId.Value);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddMaxHours(int employee, int maxHours, DateTime? startDate, DateTime? endDate)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationId = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+
+            ScheduleRule newRule = new ScheduleRule
+            {
+                EmployeeId = employee,
+                StartTime = startDate,
+                EndTime = endDate,
+                OrganizationId = organizationId,
+                CreatedBy = userId,
+                DateCreated = DateTime.Now,
+                Approved = true
+            };
+
+            MaxHoursDecorator maxHoursRule = new MaxHoursDecorator(Basic_Functions.getEmployeeByID(employee), maxHours, new Schedule(organizationId));
+
+            newRule.Rule = maxHoursRule.EncodeJSON();
+
+            Basic_Functions.AddRule(newRule);
+
+            return RedirectToAction("RuleList");
         }
     }
 }
