@@ -18,9 +18,9 @@ namespace ShiftGenius.Rules
         {
             employee = e;
             minHours = min;
-
-            ruleStrategy = new EmployeeMinHoursStrategy(employee, minHours, employee.Organization.OrganizationId, s);
             schedule = s;
+
+            ruleStrategy = new EmployeeMinHoursStrategy(employee, minHours, employee.OrganizationId.Value, schedule);
         }
 
         public MinHoursDecorator(String json, Schedule s)

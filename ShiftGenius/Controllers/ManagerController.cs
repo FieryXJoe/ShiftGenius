@@ -221,5 +221,48 @@ namespace ShiftGenius.Controllers
         {
             return View("AddRule");
         }
+        public IActionResult AddMinHours()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            ViewBag.Employees = Basic_Functions.GetEmployeesInOrganization(Basic_Functions.getEmployeeByID(userId).OrganizationId.Value);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddMinHours(int employee, int minHours, DateTime? startDate, DateTime? endDate)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationId = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+
+            ScheduleRule newRule = new ScheduleRule
+            {
+                EmployeeId = employee,
+                StartTime = startDate,
+                EndTime = endDate,
+                OrganizationId = organizationId,
+                CreatedBy = userId,
+                DateCreated = DateTime.Now,
+                Approved = true
+            };
+
+            MinHoursDecorator minHoursRule = new MinHoursDecorator(Basic_Functions.getEmployeeByID(employee), minHours, new Schedule(organizationId));
+
+            newRule.Rule = minHoursRule.EncodeJSON();
+
+            Basic_Functions.AddRule(newRule);
+
+            return RedirectToAction("RuleList");
+        }
     }
 }

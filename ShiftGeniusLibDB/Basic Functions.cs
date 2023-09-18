@@ -219,7 +219,7 @@ namespace ShiftGeniusLibDB
                 return true;
             }
         }
-        
+
         public static ScheduleRule GetRuleById(int id)
         {
             using (var context = new ShiftGeniusContext())
@@ -251,6 +251,30 @@ namespace ShiftGeniusLibDB
                 {
                     return false;
                 }
+            }
+        }
+        public static List<Employee> GetEmployeesInOrganization(int organizationID)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var employees = context.Employees.Where(e => e.OrganizationId == organizationID).ToList();
+                if (employees != null)
+                {
+                    return employees;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+        public static bool AddRule(ScheduleRule rule)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                context.ScheduleRules.Add(rule);
+                context.SaveChanges();
+                return true;
             }
         }
     }
