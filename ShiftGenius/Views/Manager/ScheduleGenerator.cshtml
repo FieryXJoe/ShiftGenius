@@ -47,7 +47,7 @@
                                     foreach (var employeeScheduled in scheduleDay.EmployeeScheduleds)
                                     {
                                         <div class="employee-card">
-                                            @Basic_Functions.getEmployeeNameByID(employeeScheduled.EmployeeScheduledId)
+                                            @Basic_Functions.getEmployeeNameByID(employeeScheduled.EmployeeId)
                                             <br />
                                             @employeeScheduled.StartTime.ToString("hh:mm tt") - @employeeScheduled.EndTime.ToString("hh:mm tt")
                                             <br />

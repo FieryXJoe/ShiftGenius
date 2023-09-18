@@ -301,7 +301,8 @@ namespace ShiftGeniusLibDB
                             ScheduleDayId = scheduleDay.ScheduleDayId,
                             StartTime = newEmployeeScheduled.StartTime,
                             EndTime = newEmployeeScheduled.EndTime,
-                            EmployeeRoleId = null
+                            EmployeeRoleId = null,
+                            EmployeeId = newEmployeeScheduled.EmployeeId
                         };
 
                         context.EmployeeScheduleds.Add(newEntity);
@@ -309,6 +310,23 @@ namespace ShiftGeniusLibDB
                 }
 
                 context.SaveChanges();
+            }
+        }
+
+        //get all days Employee Scheduled
+        public static List<EmployeeScheduled> GetAllDaysEmployeeIsScheduled(int employeeId)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var employeeScheduleds = context.EmployeeScheduleds.Where(es => es.EmployeeId == employeeId).ToList();
+                if (employeeScheduleds != null)
+                {
+                    return employeeScheduleds;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
