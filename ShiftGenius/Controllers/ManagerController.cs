@@ -76,11 +76,11 @@ namespace ShiftGenius.Controllers
                 new ManagerAvailRequestModel { EmployeeID = "002", EmployeeName = "Joe Joe" },
             };
         }
-      
+
         [HttpGet]
         public IActionResult InviteEmployee()
         {
-            var model = new InviteEmployeeViewModel(); 
+            var model = new InviteEmployeeViewModel();
             return View(model);
         }
 
@@ -139,7 +139,7 @@ namespace ShiftGenius.Controllers
             int userId = int.Parse(userIdClaim.Value);
             int organizationID = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
             RuleBuilder ruleBuilder = new RuleBuilder(organizationID);
-            
+
             if (ModelState.IsValid)
             {
                 RuleDecorator ruleDecorator = ruleBuilder.buildSingleRule(type);
@@ -216,4 +216,10 @@ namespace ShiftGenius.Controllers
             Basic_Functions.DeleteRule(id);
             return RedirectToAction("RuleList");
         }
+
+        public IActionResult AddRule()
+        {
+            return View("AddRule");
+        }
+    }
 }
