@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj": {}
+    "C:\\Users\\ml102753\\Source\\Repos\\ShiftGenius22\\ShiftGenius\\ShiftGenius.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
+    "C:\\Users\\ml102753\\Source\\Repos\\ShiftGenius22\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
+        "projectUniqueName": "C:\\Users\\ml102753\\Source\\Repos\\ShiftGenius22\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
         "projectName": "ShiftGeniusLibDB",
-        "projectPath": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
+        "projectPath": "C:\\Users\\ml102753\\Source\\Repos\\ShiftGenius22\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
         "packagesPath": "C:\\Users\\ml102753\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\obj\\",
+        "outputPath": "C:\\Users\\ml102753\\Source\\Repos\\ShiftGenius22\\ShiftGeniusLibDB\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -84,14 +84,14 @@
         }
       }
     },
-    "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj": {
+    "C:\\Users\\ml102753\\Source\\Repos\\ShiftGenius22\\ShiftGenius\\ShiftGenius.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
+        "projectUniqueName": "C:\\Users\\ml102753\\Source\\Repos\\ShiftGenius22\\ShiftGenius\\ShiftGenius.csproj",
         "projectName": "ShiftGenius",
-        "projectPath": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
+        "projectPath": "C:\\Users\\ml102753\\Source\\Repos\\ShiftGenius22\\ShiftGenius\\ShiftGenius.csproj",
         "packagesPath": "C:\\Users\\ml102753\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGenius\\obj\\",
+        "outputPath": "C:\\Users\\ml102753\\Source\\Repos\\ShiftGenius22\\ShiftGenius\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -113,8 +113,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
-                "projectPath": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj"
+              "C:\\Users\\ml102753\\Source\\Repos\\ShiftGenius22\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj": {
+                "projectPath": "C:\\Users\\ml102753\\Source\\Repos\\ShiftGenius22\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj"
               }
             }
           }
