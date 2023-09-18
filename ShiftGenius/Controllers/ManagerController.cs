@@ -216,5 +216,4 @@ namespace ShiftGenius.Controllers
             Basic_Functions.DeleteRule(id);
             return RedirectToAction("RuleList");
         }
-    }
 }

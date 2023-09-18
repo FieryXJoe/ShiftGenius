@@ -2,8 +2,10 @@
 using ShiftGenius.Rules;
 using Newtonsoft.Json.Linq;
 using System.Data;
+using ShiftGeniusLibDB.Aggregate;
+using ShiftGeniusLibDB;
 
-namespace ShiftGeniusLibDB.Aggregate
+namespace ShiftGenius.Rules
 {
     public class RuleBuilder
     {
