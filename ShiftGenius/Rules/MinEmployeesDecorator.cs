@@ -43,10 +43,15 @@ namespace ShiftGenius.Rules
             using JsonDocument doc = JsonDocument.Parse(json);
             JsonElement root = doc.RootElement;
 
-            if (root.TryGetProperty("MinEmployees", out JsonElement minEmployeesElement))
+            if (root.TryGetProperty("MinEmployees", out JsonElement minEmployeesElement) &&
+                root.TryGetProperty("StartTime", out JsonElement startTimeElement) &&
+                root.TryGetProperty("EndTime", out JsonElement endTimeElement))
             {
                 minEmployees = minEmployeesElement.GetInt32();
-                return $"MinEmployees: {minEmployees}";
+                start = TimeSpan.Parse(startTimeElement.GetString());
+                end = TimeSpan.Parse(endTimeElement.GetString());
+
+                return $"MinEmployees: {minEmployees}, StartTime: {start}, EndTime: {end}";
             }
             else
             {
@@ -56,13 +61,16 @@ namespace ShiftGenius.Rules
 
         public override string EncodeJSON()
         {
-            //Create a JSON object containing info of the number of minimum employees
+            // Create a JSON object containing info of the number of minimum employees, start time and end time
             String json = "{";
             json += "\"Type\": \"MinEmployees\",";
-            json += "\"MinEmployees\": " + minEmployees;
+            json += "\"MinEmployees\": " + minEmployees + ",";
+            json += "\"StartTime\": \"" + start.ToString(@"hh\:mm\:ss") + "\",";
+            json += "\"EndTime\": \"" + end.ToString(@"hh\:mm\:ss") + "\"";
             json += "}";
             return json;
         }
+
 
         public override Schedule EnforceRules(Schedule s)
         {

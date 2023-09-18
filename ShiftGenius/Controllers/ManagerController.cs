@@ -318,5 +318,80 @@ namespace ShiftGenius.Controllers
 
             return RedirectToAction("RuleList");
         }
+
+        public IActionResult AddOperatingHours()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddOperatingHours(TimeSpan startTime, TimeSpan endTime, DateTime? startDate, DateTime? endDate)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationId = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+
+            OperatingHoursDecorator decorator = new OperatingHoursDecorator(startTime, endTime, new Schedule(organizationId), organizationId);
+            string json = decorator.EncodeJSON();
+
+            ScheduleRule newRule = new ScheduleRule
+            {
+                EmployeeId = null,
+                StartTime = startDate,
+                EndTime = endDate,
+                Rule = json,
+                OrganizationId = organizationId,
+                CreatedBy = userId,
+                DateCreated = DateTime.Now,
+                Approved = true
+            };
+
+            Basic_Functions.AddRule(newRule);
+
+            return RedirectToAction("RuleList");
+        }
+        public IActionResult AddMinEmployees()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddMinEmployees(int numEmployees, TimeSpan startTime, TimeSpan endTime, DateTime? startDate, DateTime? endDate)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationId = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+
+            
+            MinEmployeesDecorator decorator = new MinEmployeesDecorator(numEmployees, new Schedule(organizationId), startTime, endTime);
+
+            string json = decorator.EncodeJSON();
+
+            ScheduleRule newRule = new ScheduleRule
+            {
+                EmployeeId = null, 
+                StartTime = startDate,
+                EndTime = endDate,
+                Rule = json,
+                OrganizationId = organizationId,
+                CreatedBy = userId,
+                DateCreated = DateTime.Now,
+                Approved = true
+            };
+
+            Basic_Functions.AddRule(newRule);
+
+            return RedirectToAction("RuleList");
+        }
+
     }
 }

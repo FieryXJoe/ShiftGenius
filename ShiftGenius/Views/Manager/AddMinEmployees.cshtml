@@ -1,0 +1,36 @@
+﻿@*
+*@
+@{
+    <div class="container mt-5">
+        <h2>Add Min Employees Rule</h2>
+        <form asp-controller="Manager" asp-action="AddMinEmployees" method="post">
+
+            <div class="form-group">
+                <label for="numEmployees" style="color: black;">Number of Employees</label>
+                <input type="number" class="form-control" id="numEmployees" name="numEmployees" placeholder="Enter minimum number of employees" required>
+            </div>
+
+            <div class="form-group">
+                <label for="startTime" style="color: black;">Start Time</label>
+                <input type="time" class="form-control" id="startTime" name="startTime" required>
+            </div>
+
+            <div class="form-group">
+                <label for="endTime" style="color: black;">End Time</label>
+                <input type="time" class="form-control" id="endTime" name="endTime" required>
+            </div>
+
+            <div class="form-group">
+                <label for="startDate" style="color: black;">Start Date (Optional)</label>
+                <input type="date" class="form-control" id="startDate" name="startDate">
+            </div>
+
+            <div class="form-group">
+                <label for="endDate" style="color: black;">End Date (Optional)</label>
+                <input type="date" class="form-control" id="endDate" name="endDate">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Rule</button>
+        </form>
+    </div>
+}
