@@ -54,12 +54,13 @@ namespace ShiftGenius.Rules
 
                         EmployeeScheduled newShift = new EmployeeScheduled
                         {
-                            EmployeeScheduledId = employee.EmployeeId,
+                            EmployeeId = employee.EmployeeId,
                             ScheduleDayId = selectedDay.ScheduleDayId,
                             StartTime = startTime,
                             EndTime = endTime
                         };
 
+                       
                         s.AddEmployeeToDay(newShift);
                         hoursNeeded -= (endTime - startTime).Hours;
                     }
@@ -74,7 +75,7 @@ namespace ShiftGenius.Rules
                         int randDay = random.Next(shifts.Count);
                         if (shifts[randDay].EmployeeScheduleds.Count != 0)
                         {
-                            EmployeeScheduled existingShift = shifts[randDay].EmployeeScheduleds.FirstOrDefault(es => es.EmployeeScheduledId == employee.EmployeeId);
+                            EmployeeScheduled existingShift = shifts[randDay].EmployeeScheduleds.FirstOrDefault(es => es.EmployeeId == employee.EmployeeId);
 
                             if (existingShift != null)
                             {
@@ -128,7 +129,7 @@ namespace ShiftGenius.Rules
 
                     var newShift = new EmployeeScheduled
                     {
-                        EmployeeScheduledId = employee.EmployeeId,
+                        EmployeeId = employee.EmployeeId,
                         ScheduleDayId = day.ScheduleDayId,
                         StartTime = shiftStart,
                         EndTime = shiftEnd

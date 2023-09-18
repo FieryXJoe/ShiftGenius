@@ -87,7 +87,7 @@ namespace ShiftGenius.Rules
                         TimeSpan shiftLength = TimeSpan.FromHours(random.Next(4, 7));
                         EmployeeScheduled newShift = new EmployeeScheduled
                         {
-                            EmployeeScheduledId = availableEmployee.EmployeeId,
+                            EmployeeId = availableEmployee.EmployeeId,
                             ScheduleDayId = day.ScheduleDayId,
                             StartTime = day.Day + startTime,
                             EndTime = day.Day + startTime + shiftLength

@@ -84,11 +84,11 @@ namespace ShiftGeniusLibDB.Aggregate
             targetDay.EmployeeScheduleds.Add(employeeScheduled);
         }
 
-        public void RemoveEmployeeFromDay(int employeeScheduledId)
+        public void RemoveEmployeeFromDay(int EmployeeId)
         {
             foreach (var day in ScheduleDays)
             {
-                var toRemove = day.EmployeeScheduleds.FirstOrDefault(e => e.EmployeeScheduledId == employeeScheduledId);
+                var toRemove = day.EmployeeScheduleds.FirstOrDefault(e => e.EmployeeId == EmployeeId);
 
                 if (toRemove != null)
                 {
@@ -98,10 +98,10 @@ namespace ShiftGeniusLibDB.Aggregate
             }
         }
 
-        public void UpdateEmployeeShift(int employeeScheduledId, DateTime newStartTime, DateTime newEndTime)
+        public void UpdateEmployeeShift(int EmployeeId, DateTime newStartTime, DateTime newEndTime)
         {
             var employeeScheduled = ScheduleDays.SelectMany(day => day.EmployeeScheduleds)
-                                                .FirstOrDefault(e => e.EmployeeScheduledId == employeeScheduledId);
+                                                .FirstOrDefault(e => e.EmployeeId == EmployeeId);
 
             if (employeeScheduled == null)
             {
@@ -135,7 +135,7 @@ namespace ShiftGeniusLibDB.Aggregate
             {
                 foreach (var employeeScheduled in scheduleDay.EmployeeScheduleds)
                 {
-                    if (employeeScheduled.EmployeeScheduledId == employeeId)
+                    if (employeeScheduled.EmployeeId == employeeId)
                     {
                         totalHours += (employeeScheduled.EndTime - employeeScheduled.StartTime);
                     }
@@ -151,7 +151,7 @@ namespace ShiftGeniusLibDB.Aggregate
 
             foreach (var scheduleDay in ScheduleDays)
             {
-                var isEmployeeScheduledOnThisDay = scheduleDay.EmployeeScheduleds.Any(e => e.EmployeeScheduledId == employeeId);
+                var isEmployeeScheduledOnThisDay = scheduleDay.EmployeeScheduleds.Any(e => e.EmployeeId == employeeId);
 
                 if (!isEmployeeScheduledOnThisDay)
                 {
@@ -168,7 +168,7 @@ namespace ShiftGeniusLibDB.Aggregate
 
             foreach (var scheduleDay in ScheduleDays)
             {
-                var isEmployeeScheduledOnThisDay = scheduleDay.EmployeeScheduleds.Any(e => e.EmployeeScheduledId == employeeId);
+                var isEmployeeScheduledOnThisDay = scheduleDay.EmployeeScheduleds.Any(e => e.EmployeeId == employeeId);
 
                 if (isEmployeeScheduledOnThisDay)
                 {
@@ -181,7 +181,7 @@ namespace ShiftGeniusLibDB.Aggregate
 
         public Employee FindEmployeeNotScheduledForDay(ScheduleDay day)
         {
-            List<int> scheduledEmployeeIds = day.EmployeeScheduleds.Select(e => e.EmployeeScheduledId).ToList();
+            List<int> scheduledEmployeeIds = day.EmployeeScheduleds.Select(e => e.EmployeeId).ToList();
 
             List<Employee> allEmployees = new List<Employee>();
             using (var context = new ShiftGeniusContext())
