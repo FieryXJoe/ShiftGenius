@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2+WEkOH4tRVWOa451CmVeyUtclWcBAQRsi8CO5AGk5i67ouKn8UaCmV1yU930SY4OdGl74UcLMIUurBE3MKSJA==",
+  "dgSpecHash": "G7gSZCyzsc8/s0hUD5X4+JVkXuZBvIe6BJpUq2on3jME0+L7raobi25310cFSAT3Zmn275CUDY5mQq2K0e6CTg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ml102753\\Source\\Repos\\FieryXJoe\\ShiftGenius\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
+  "projectFilePath": "C:\\Users\\ml102753\\Source\\Repos\\ShiftGenius22\\ShiftGeniusLibDB\\ShiftGeniusLibDB.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ml102753\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\ml102753\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

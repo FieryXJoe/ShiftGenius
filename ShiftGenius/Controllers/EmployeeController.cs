@@ -1,10 +1,5 @@
-﻿using Humanizer;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
 using ShiftGenius.Models;
-using ShiftGeniusLibDB.Models;
-using System;
-using System.Collections.Generic;
 
 namespace ShiftGenius.Controllers
 {
@@ -69,14 +64,14 @@ namespace ShiftGenius.Controllers
 
 
         public IActionResult EmployeeAvailChange()
-    {
-        // For demonstration purposes, let's create a sample availability dictionary
+        {
+            // For demonstration purposes, let's create a sample availability dictionary
             var availabilityData = new Dictionary<string, Availability>
             {
                 // Add availability data here
             };
-        var viewModel = new EmployeeAvailChangeModel
-        {
+            var viewModel = new EmployeeAvailChangeModel
+            {
                 Availability = availabilityData
             };
 
