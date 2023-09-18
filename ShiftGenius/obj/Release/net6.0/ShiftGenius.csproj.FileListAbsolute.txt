@@ -742,3 +742,5 @@ C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjNew\ShiftGenius\Sh
 C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjNew\ShiftGenius\ShiftGenius\obj\Release\net6.0\ShiftGenius.pdb
 C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjNew\ShiftGenius\ShiftGenius\obj\Release\net6.0\ShiftGenius.genruntimeconfig.cache
 C:\Users\ml102753\OneDrive - harriscomputer\Desktop\seniorProjNew\ShiftGenius\ShiftGenius\obj\Release\net6.0\ref\ShiftGenius.dll
+C:\Users\jsher\source\repos\ShiftGenius\ShiftGenius\bin\Release\net6.0\SendGrid.dll
+C:\Users\jsher\source\repos\ShiftGenius\ShiftGenius\bin\Release\net6.0\StarkbankEcdsa.dll

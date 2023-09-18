@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "a6HbzdPMyCeUx7JPHugLBemDK32baVBTJxk0zHj0gEHs/OU6NKU4njBCDthDNhkvINHZSdWtPppgDoH0gU7mHQ==",
+  "dgSpecHash": "qjcai9r3D+yvo+L08h/EF1/toIFFiHkmWzKu2PLPDRcutyqfaeiAgI1KGqFYU8MNuevs2d+y8wypqRRcgldRHQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\jsher\\source\\repos\\ShiftGenius\\ShiftGenius\\ShiftGenius.csproj",
   "expectedPackageFiles": [
@@ -137,6 +137,8 @@
     "C:\\Users\\jsher\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\jsher\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\jsher\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\jsher\\.nuget\\packages\\sendgrid\\9.28.1\\sendgrid.9.28.1.nupkg.sha512",
+    "C:\\Users\\jsher\\.nuget\\packages\\starkbank-ecdsa\\1.3.3\\starkbank-ecdsa.1.3.3.nupkg.sha512",
     "C:\\Users\\jsher\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\jsher\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\jsher\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
