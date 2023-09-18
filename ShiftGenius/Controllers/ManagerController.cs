@@ -264,5 +264,16 @@ namespace ShiftGenius.Controllers
 
             return RedirectToAction("RuleList");
         }
+        public IActionResult ViewRule(int id)
+        {
+            ScheduleRule rule = Basic_Functions.GetRuleById(id);
+            
+            if (rule == null)
+            {
+                return NotFound();
+            }
+
+            return View(rule);
+        }
     }
 }

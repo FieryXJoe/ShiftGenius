@@ -16,7 +16,7 @@
                 <li class="d-flex justify-content-between align-items-center mb-2">
                     <span>@RuleBuilder.GetRuleType(rule)</span>
                     <div>
-                        <a class="btn btn-warning" asp-controller="Manager" asp-action="@("View" + RuleBuilder.GetRuleType(rule))" data-id="@rule.ScheduleRuleId">View</a>
+                        <a class="btn btn-warning" asp-controller="Manager" asp-action="ViewRule" asp-route-id="@rule.ScheduleRuleId">View</a>
                         <a class="btn btn-warning" asp-controller="Manager" asp-action="@("Edit" + RuleBuilder.GetRuleType(rule))" data-id="@rule.ScheduleRuleId">Edit</a>
                         <form method="post" action="@Url.Action("DeleteRuleConfirmed", "Manager")" onsubmit="return confirm('Are you sure you want to delete this rule?');" style="display:inline;">
                             <input type="hidden" name="ruleId" value="@rule.ScheduleRuleId" />
