@@ -9,6 +9,7 @@ using ShiftGeniusLibDB.Models;
 using System.Collections.Generic;
 using System.Data;
 using System.Security.Claims;
+using Newtonsoft.Json;
 
 namespace ShiftGenius.Controllers
 {
@@ -371,14 +372,14 @@ namespace ShiftGenius.Controllers
             int userId = int.Parse(userIdClaim.Value);
             int organizationId = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
 
-            
+
             MinEmployeesDecorator decorator = new MinEmployeesDecorator(numEmployees, new Schedule(organizationId), startTime, endTime);
 
             string json = decorator.EncodeJSON();
 
             ScheduleRule newRule = new ScheduleRule
             {
-                EmployeeId = null, 
+                EmployeeId = null,
                 StartTime = startDate,
                 EndTime = endDate,
                 Rule = json,
@@ -391,6 +392,18 @@ namespace ShiftGenius.Controllers
             Basic_Functions.AddRule(newRule);
 
             return RedirectToAction("RuleList");
+        }
+
+        [HttpPost]
+        public IActionResult SaveSchedule(string SerializedSchedule)
+        {
+            Schedule schedule = JsonConvert.DeserializeObject<Schedule>(SerializedSchedule);
+
+            // Call the built-in save function of the Schedule object
+            schedule.SaveChanges();
+
+            // Redirect or return a view
+            return RedirectToAction("Index");
         }
 
     }

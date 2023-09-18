@@ -3,6 +3,7 @@
 @using ShiftGeniusLibDB;
 @using System.Security.Claims;
 @using ShiftGenius.Rules;
+@using Newtonsoft.Json
 
 @{
     var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
@@ -18,6 +19,8 @@
     var groupedByDayOfWeek = schedule.ScheduleDays 
                               .GroupBy(sd => sd.Day.DayOfWeek)
                               .OrderBy(g => (int)g.Key);
+
+    string serializedSchedule = JsonConvert.SerializeObject(schedule);
 }
 
 <div>
@@ -25,7 +28,8 @@
         <h1>Welcome @User.Identity.Name</h1>
         <h3>Schedule for the week of @schedule.StartDate.ToShortDateString() to @schedule.EndDate.ToShortDateString()</h3> 
     </div>
-    <form method="post" asp-controller="YourController" asp-action="SaveSchedule">
+    <form method="post" asp-controller="Manager" asp-action="SaveSchedule">
+        <input type="hidden" name="SerializedSchedule" value="@serializedSchedule" />
     <div class="d-flex justify-content-center align-items-center" style="height:60vh;">
 
         <div class="container text-white" style="background-color: #343F4B; padding: 30px; height:40vh;">
@@ -37,15 +41,15 @@
                             <div class="card-header" style="color:#122235; font-size:20px">
                                 @group.Key
                             </div>
-                            <div class="card-body d-flex justify-content-center align-items-center" style="color:#56606c;font-size:16px;font-weight:lighter">
+                            <div class="card-body d-flex justify-content-center align-items-center employee-list" style="color:#56606c;font-size:16px;font-weight:lighter">
                                 @foreach (var scheduleDay in group)
                                 {
                                     foreach (var employeeScheduled in scheduleDay.EmployeeScheduleds)
                                     {
-                                        <div>
+                                        <div class="employee-card">
                                             @Basic_Functions.getEmployeeNameByID(employeeScheduled.EmployeeScheduledId)
                                             <br />
-                                            @employeeScheduled.StartTime - @employeeScheduled.EndTime
+                                            @employeeScheduled.StartTime.ToString("hh:mm tt") - @employeeScheduled.EndTime.ToString("hh:mm tt")
                                             <br />
                                         </div>
                                     }
@@ -60,7 +64,7 @@
         <div class="text-center mt-8">
             <button type="submit" class="btn btn-success" style="margin-right:50px">Confirm</button>
             <a class="btn btn-primary" style="margin-right:50px">Edit</a>
-            <a class="btn btn-primary" style="margin-right:50px">Regenerate</a>
+            <a class="btn btn-primary" style="margin-right:50px" asp-controller="Manager" asp-action="ScheduleGenerator">Regenerate</a>
             <a class="btn btn-danger" asp-controller="Manager" asp-action="Index">Cancel</a>
         </div>
     </form>

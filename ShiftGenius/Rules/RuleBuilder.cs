@@ -141,8 +141,8 @@ namespace ShiftGenius.Rules
                     schedule = currentRule.EnforceRules(schedule);
                     currentRule = currentRule.ruleComponent; // Traverse down the decorator chain
                 }
-                // Try to validate the schedule
                 /**
+                // Try to validate the schedule
                 for (int enforcementAttempt = 0; enforcementAttempt < enforcementRetries; enforcementAttempt++)
                 {
                     bool allRulesValid = true;
@@ -164,6 +164,7 @@ namespace ShiftGenius.Rules
                         return schedule;
                     }
                 }
+                
                 // If we reach this point, we were unable to generate a valid schedule, so reset it
                 schedule.Reset();
                 */

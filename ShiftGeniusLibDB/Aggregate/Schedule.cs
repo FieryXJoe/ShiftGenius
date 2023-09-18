@@ -16,6 +16,8 @@ namespace ShiftGeniusLibDB.Aggregate
 
         public List<ScheduleDay> ScheduleDays { get; set; }
 
+        public Schedule() { } //for Json Deserializer
+
         public Schedule(int organizationId, DateTime startDate, DateTime endDate)
         {
             if (endDate < startDate)
@@ -56,7 +58,7 @@ namespace ShiftGeniusLibDB.Aggregate
         }
 
         public Schedule(int organizationId) : this(organizationId, GetNextSaturday(), GetNextSaturday().AddDays(6))
-        {}
+        { }
 
         private static DateTime GetNextSaturday()
         {
@@ -112,41 +114,8 @@ namespace ShiftGeniusLibDB.Aggregate
         //Ensures all ScheduleDays and EmployeeScheduled for those days are in the current context then save the context.
         public void SaveChanges()
         {
-            using (var context = new ShiftGeniusContext())
-            {
-                // 1. Ensure all ScheduleDays are tracked
-                foreach (var scheduleDay in ScheduleDays)
-                {
-                    if (context.Entry(scheduleDay).State == EntityState.Detached)
-                    {
-                        context.ScheduleDays.Attach(scheduleDay);
-                    }
-
-                    // 2. Ensure all EmployeeScheduled entities are tracked
-                    foreach (var employeeScheduled in scheduleDay.EmployeeScheduleds)
-                    {
-                        if (context.Entry(employeeScheduled).State == EntityState.Detached)
-                        {
-                            context.EmployeeScheduleds.Attach(employeeScheduled);
-                            context.Entry(employeeScheduled).State = EntityState.Added;  // Because it's a new entity
-                        }
-                    }
-
-                    // 3. Sync with database: Remove any EmployeeScheduleds from DB that aren't in our list
-                    var currentEmployeeScheduledIds = scheduleDay.EmployeeScheduleds.Select(es => es.EmployeeScheduledId).ToList();
-                    var employeeScheduledsInDb = context.EmployeeScheduleds.Where(es => es.ScheduleDayId == scheduleDay.ScheduleDayId).ToList();
-
-                    foreach (var employeeScheduledInDb in employeeScheduledsInDb)
-                    {
-                        if (!currentEmployeeScheduledIds.Contains(employeeScheduledInDb.EmployeeScheduledId))
-                        {
-                            context.EmployeeScheduleds.Remove(employeeScheduledInDb);  // Remove from DB
-                        }
-                    }
-                }
-                
-                context.SaveChanges();
-            }
+            List<ScheduleDay> scheduleDays = this.ScheduleDays;
+            Basic_Functions.UpdateEmployeeScheduledForScheduleDays(scheduleDays);
         }
         public void Reset()
         {
@@ -200,7 +169,7 @@ namespace ShiftGeniusLibDB.Aggregate
             foreach (var scheduleDay in ScheduleDays)
             {
                 var isEmployeeScheduledOnThisDay = scheduleDay.EmployeeScheduleds.Any(e => e.EmployeeScheduledId == employeeId);
-                
+
                 if (isEmployeeScheduledOnThisDay)
                 {
                     daysEmployeeIsScheduled.Add(scheduleDay);
@@ -232,5 +201,6 @@ namespace ShiftGeniusLibDB.Aggregate
             int index = rand.Next(availableEmployees.Count);
             return availableEmployees[index];
         }
+
     }
 }

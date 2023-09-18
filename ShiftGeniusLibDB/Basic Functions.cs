@@ -1,4 +1,5 @@
-﻿using ShiftGeniusLibDB.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ShiftGeniusLibDB.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -277,5 +278,39 @@ namespace ShiftGeniusLibDB
                 return true;
             }
         }
+
+        public static void UpdateEmployeeScheduledForScheduleDays(List<ScheduleDay> scheduleDays)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                foreach (var scheduleDay in scheduleDays)
+                {
+                    // Delete all existing records for each ScheduleDay
+                    var existingEmployeeScheduleds = context.EmployeeScheduleds
+                                                             .Where(es => es.ScheduleDayId == scheduleDay.ScheduleDayId)
+                                                             .ToList();
+                    context.EmployeeScheduleds.RemoveRange(existingEmployeeScheduleds);
+
+                    // Add new EmployeeScheduled records
+                    foreach (var newEmployeeScheduled in scheduleDay.EmployeeScheduleds)
+                    {
+                        // Create a new entity without the identity column
+                        var newEntity = new EmployeeScheduled
+                        {
+                            // Initialize properties, but skip EmployeeScheduledId if it's an identity column
+                            ScheduleDayId = scheduleDay.ScheduleDayId,
+                            StartTime = newEmployeeScheduled.StartTime,
+                            EndTime = newEmployeeScheduled.EndTime,
+                            EmployeeRoleId = null
+                        };
+
+                        context.EmployeeScheduleds.Add(newEntity);
+                    }
+                }
+
+                context.SaveChanges();
+            }
+        }
+
     }
 }

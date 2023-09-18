@@ -7,7 +7,7 @@ namespace ShiftGeniusLibDB.Models
     {
         public int EmployeeScheduledId { get; set; }
         public int ScheduleDayId { get; set; }
-        public int EmployeeRoleId { get; set; }
+        public int? EmployeeRoleId { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
