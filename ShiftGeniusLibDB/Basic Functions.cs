@@ -1,4 +1,12 @@
-﻿using ShiftGeniusLibDB.Models;
+
+﻿using Microsoft.EntityFrameworkCore;
+using ShiftGeniusLibDB.Models;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ShiftGeniusLibDB
 {
@@ -164,7 +172,7 @@ namespace ShiftGeniusLibDB
             }
         }
 
-        public static List<ScheduleRule> getRulesForOrganization(int organizationID)
+        public static List<ScheduleRule> GetRulesForOrganization(int organizationID)
         {
             using (var context = new ShiftGeniusContext())
             {
@@ -179,5 +187,149 @@ namespace ShiftGeniusLibDB
                 }
             }
         }
+        public static bool UpdateRule(int ruleID, String jsonRule)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var rule = context.ScheduleRules.Where(r => r.ScheduleRuleId == ruleID).FirstOrDefault();
+                if (rule != null)
+                {
+                    rule.Rule = jsonRule;
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static bool AddRule(int organizationID, String jsonRule)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var rule = new ScheduleRule
+                {
+                    OrganizationId = organizationID,
+                    Rule = jsonRule,
+                    DateCreated = DateTime.Now,
+                    Approved = true
+                };
+                context.ScheduleRules.Add(rule);
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        public static ScheduleRule GetRuleById(int id)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var rule = context.ScheduleRules.Where(r => r.ScheduleRuleId == id).FirstOrDefault();
+                if (rule != null)
+                {
+                    return rule;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static bool DeleteRule(int id)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var rule = context.ScheduleRules.Where(r => r.ScheduleRuleId == id).FirstOrDefault();
+                if (rule != null)
+                {
+                    context.ScheduleRules.Remove(rule);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        public static List<Employee> GetEmployeesInOrganization(int organizationID)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var employees = context.Employees.Where(e => e.OrganizationId == organizationID).ToList();
+                if (employees != null)
+                {
+                    return employees;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+        public static bool AddRule(ScheduleRule rule)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                context.ScheduleRules.Add(rule);
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        public static void UpdateEmployeeScheduledForScheduleDays(List<ScheduleDay> scheduleDays)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                foreach (var scheduleDay in scheduleDays)
+                {
+                    // Delete all existing records for each ScheduleDay
+                    var existingEmployeeScheduleds = context.EmployeeScheduleds
+                                                             .Where(es => es.ScheduleDayId == scheduleDay.ScheduleDayId)
+                                                             .ToList();
+                    context.EmployeeScheduleds.RemoveRange(existingEmployeeScheduleds);
+
+                    // Add new EmployeeScheduled records
+                    foreach (var newEmployeeScheduled in scheduleDay.EmployeeScheduleds)
+                    {
+                        // Create a new entity without the identity column
+                        var newEntity = new EmployeeScheduled
+                        {
+                            // Initialize properties, but skip EmployeeScheduledId if it's an identity column
+                            ScheduleDayId = scheduleDay.ScheduleDayId,
+                            StartTime = newEmployeeScheduled.StartTime,
+                            EndTime = newEmployeeScheduled.EndTime,
+                            EmployeeRoleId = null,
+                            EmployeeId = newEmployeeScheduled.EmployeeId
+                        };
+
+                        context.EmployeeScheduleds.Add(newEntity);
+                    }
+                }
+
+                context.SaveChanges();
+            }
+        }
+
+        //get all days Employee Scheduled
+        public static List<EmployeeScheduled> GetAllDaysEmployeeIsScheduled(int employeeId)
+        {
+            using (var context = new ShiftGeniusContext())
+            {
+                var employeeScheduleds = context.EmployeeScheduleds.Where(es => es.EmployeeId == employeeId).ToList();
+                if (employeeScheduleds != null)
+                {
+                    return employeeScheduleds;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
     }
 }

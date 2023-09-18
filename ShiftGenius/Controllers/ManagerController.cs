@@ -1,10 +1,18 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ShiftGenius.Models;
+using ShiftGenius.Rules;
+using ShiftGeniusLibDB;
+using ShiftGeniusLibDB.Aggregate;
+using ShiftGeniusLibDB.Models;
+using System.Collections.Generic;
+using System.Data;
+using System.Security.Claims;
+using Newtonsoft.Json;
 using System.Net;
 using System.Net.Mail;
 using System.Linq;
-using ShiftGeniusLibDB;
 
 namespace ShiftGenius.Controllers
 {
@@ -26,15 +34,23 @@ namespace ShiftGenius.Controllers
         {
             return View();
         }
-
-        public IActionResult ScheduleGenerator()
+        public ActionResult ScheduleGenerator()
         {
-            return View();
-        }
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
 
-        public IActionResult RuleList()
-        {
-            return View();
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationID = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+
+            Schedule schedule = new Schedule(organizationID);
+            WeeklyScheduleViewModel model = new WeeklyScheduleViewModel
+            {
+                Schedule = schedule
+            };
+            return View(model);
         }
 
         public static string FormatNullableDate(DateTime? date)
@@ -220,6 +236,7 @@ namespace ShiftGenius.Controllers
             };
         }
 
+
         public IActionResult InviteEmployee()
         {
             return View();
@@ -271,6 +288,300 @@ namespace ShiftGenius.Controllers
                 _logger.LogError($"Failed to send the invitation email: {ex.Message}");
                 return RedirectToAction("Error");
             }
+        }
+
+        public IActionResult RuleList()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            var organizationId = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+            var rules = Basic_Functions.GetRulesForOrganization(organizationId);
+            return View("RuleList", rules);
+        }
+        public IActionResult CreateRule()
+        {
+            return View("CreateRule");
+        }
+
+        [HttpPost]
+        public IActionResult CreateRule(string type, string json, int? employeeId)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationID = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+            RuleBuilder ruleBuilder = new RuleBuilder(organizationID);
+
+            if (ModelState.IsValid)
+            {
+                RuleDecorator ruleDecorator = ruleBuilder.buildSingleRule(type);
+                ruleBuilder.SaveRuleToDatabase(ruleDecorator);
+
+                return RedirectToAction("RuleList");
+            }
+            return View("CreateRule");
+        }
+
+        // For editing an existing rule
+        public IActionResult EditRule(int id)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationID = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+            RuleBuilder ruleBuilder = new RuleBuilder(organizationID);
+
+            RuleDecorator ruleDecorator = ruleBuilder.LoadRuleFromDatabase(id);
+            if (ruleDecorator == null)
+            {
+                return NotFound();
+            }
+            return View("EditRule", ruleDecorator);
+        }
+
+        [HttpPost]
+        public IActionResult EditRule(RuleDecorator ruleDecorator, int id)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationID = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+            RuleBuilder ruleBuilder = new RuleBuilder(organizationID);
+
+            if (ModelState.IsValid)
+            {
+                ruleBuilder.SaveRuleToDatabase(ruleDecorator, id);
+                return RedirectToAction("RuleList");
+            }
+            return View("EditRule", ruleDecorator);
+        }
+
+        // For deleting a rule
+        public IActionResult DeleteRule(int id)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationID = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+            RuleBuilder ruleBuilder = new RuleBuilder(organizationID);
+
+            RuleDecorator ruleDecorator = ruleBuilder.LoadRuleFromDatabase(id);
+            if (ruleDecorator == null)
+            {
+                return NotFound();
+            }
+            return View("DeleteRule", ruleDecorator);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteRuleConfirmed(int ruleId)
+        {
+            Basic_Functions.DeleteRule(ruleId);
+            return RedirectToAction("RuleList");
+        }
+
+        public IActionResult AddRule()
+        {
+            return View("AddRule");
+        }
+        public IActionResult AddMinHours()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            ViewBag.Employees = Basic_Functions.GetEmployeesInOrganization(Basic_Functions.getEmployeeByID(userId).OrganizationId.Value);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddMinHours(int employee, int minHours, DateTime? startDate, DateTime? endDate)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationId = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+
+            ScheduleRule newRule = new ScheduleRule
+            {
+                EmployeeId = employee,
+                StartTime = startDate,
+                EndTime = endDate,
+                OrganizationId = organizationId,
+                CreatedBy = userId,
+                DateCreated = DateTime.Now,
+                Approved = true
+            };
+
+            MinHoursDecorator minHoursRule = new MinHoursDecorator(Basic_Functions.getEmployeeByID(employee), minHours, new Schedule(organizationId));
+
+            newRule.Rule = minHoursRule.EncodeJSON();
+
+            Basic_Functions.AddRule(newRule);
+
+            return RedirectToAction("RuleList");
+        }
+        public IActionResult ViewRule(int id)
+        {
+            ScheduleRule rule = Basic_Functions.GetRuleById(id);
+
+            if (rule == null)
+            {
+                return NotFound();
+            }
+
+            return View(rule);
+        }
+        public IActionResult AddMaxHours()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            int userId = int.Parse(userIdClaim.Value);
+            ViewBag.Employees = Basic_Functions.GetEmployeesInOrganization(Basic_Functions.getEmployeeByID(userId).OrganizationId.Value);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddMaxHours(int employee, int maxHours, DateTime? startDate, DateTime? endDate)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationId = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+
+            ScheduleRule newRule = new ScheduleRule
+            {
+                EmployeeId = employee,
+                StartTime = startDate,
+                EndTime = endDate,
+                OrganizationId = organizationId,
+                CreatedBy = userId,
+                DateCreated = DateTime.Now,
+                Approved = true
+            };
+
+            MaxHoursDecorator maxHoursRule = new MaxHoursDecorator(Basic_Functions.getEmployeeByID(employee), maxHours, new Schedule(organizationId));
+
+            newRule.Rule = maxHoursRule.EncodeJSON();
+
+            Basic_Functions.AddRule(newRule);
+
+            return RedirectToAction("RuleList");
+        }
+
+        public IActionResult AddOperatingHours()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddOperatingHours(TimeSpan startTime, TimeSpan endTime, DateTime? startDate, DateTime? endDate)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationId = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+
+            OperatingHoursDecorator decorator = new OperatingHoursDecorator(startTime, endTime, new Schedule(organizationId), organizationId);
+            string json = decorator.EncodeJSON();
+
+            ScheduleRule newRule = new ScheduleRule
+            {
+                EmployeeId = null,
+                StartTime = startDate,
+                EndTime = endDate,
+                Rule = json,
+                OrganizationId = organizationId,
+                CreatedBy = userId,
+                DateCreated = DateTime.Now,
+                Approved = true
+            };
+
+            Basic_Functions.AddRule(newRule);
+
+            return RedirectToAction("RuleList");
+        }
+        public IActionResult AddMinEmployees()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddMinEmployees(int numEmployees, TimeSpan startTime, TimeSpan endTime, DateTime? startDate, DateTime? endDate)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim.Value);
+            int organizationId = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+
+
+            MinEmployeesDecorator decorator = new MinEmployeesDecorator(numEmployees, new Schedule(organizationId), startTime, endTime);
+
+            string json = decorator.EncodeJSON();
+
+            ScheduleRule newRule = new ScheduleRule
+            {
+                EmployeeId = null,
+                StartTime = startDate,
+                EndTime = endDate,
+                Rule = json,
+                OrganizationId = organizationId,
+                CreatedBy = userId,
+                DateCreated = DateTime.Now,
+                Approved = true
+            };
+
+            Basic_Functions.AddRule(newRule);
+
+            return RedirectToAction("RuleList");
+        }
+
+        [HttpPost]
+        public IActionResult SaveSchedule(string SerializedSchedule)
+        {
+            Schedule schedule = JsonConvert.DeserializeObject<Schedule>(SerializedSchedule);
+
+            // Call the built-in save function of the Schedule object
+            schedule.SaveChanges();
+
+            // Redirect or return a view
+            return RedirectToAction("Index");
         }
 
         private string GenerateUniqueToken()

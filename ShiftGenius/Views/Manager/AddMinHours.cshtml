@@ -1,0 +1,37 @@
+﻿@using ShiftGeniusLibDB.Models;
+@*
+*@
+@{
+    <div class="container mt-5">
+        <h2>Add MinHours Rule</h2>
+        <form asp-controller="Manager" asp-action="AddMinHours" method="post">
+            <div class="form-group">
+                <label for="employee" style="color: black;">Employee</label>
+                <select class="form-control" id="employee" name="employee">
+                    <option value="">Select an Employee</option>
+                    @foreach (Employee employee in ViewBag.Employees)
+                    {
+                        <option value="@employee.EmployeeId">@employee.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="minHours" style="color: black;">Minimum Hours</label>
+                <input type="number" class="form-control" id="minHours" name="minHours" placeholder="Enter minimum hours" required>
+            </div>
+
+            <div class="form-group">
+                <label for="startDate" style="color: black;">Start Date (Optional)</label>
+                <input type="date" class="form-control" id="startDate" name="startDate">
+            </div>
+
+            <div class="form-group">
+                <label for="endDate" style="color: black;">End Date (Optional)</label>
+                <input type="date" class="form-control" id="endDate" name="endDate">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Rule</button>
+        </form>
+    </div>
+}

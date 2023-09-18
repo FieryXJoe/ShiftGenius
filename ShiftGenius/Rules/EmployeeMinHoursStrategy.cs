@@ -33,47 +33,64 @@ namespace ShiftGenius.Rules
 
                 if (decision == 0) // Create a new shift
                 {
-                    int dayOfWeek = random.Next(7);
+                    // Fetch the days where the employee is not scheduled
+                    List<ScheduleDay> daysNotScheduled = s.GetScheduleDaysEmployeeIsNotScheduled(employee.EmployeeId);
 
-                    // For simplicity, let's say each workday starts at 8 AM
-                    //TODO: Fetch this from database
-                    DateTime startTime = DateTime.Today.AddHours(8);
-                    DateTime endTime = startTime.AddHours(Math.Min(hoursNeeded, 8));
-
-                    EmployeeScheduled newShift = new EmployeeScheduled
+                    // If the employee is not scheduled on at least one day, proceed
+                    if (daysNotScheduled.Count > 0)
                     {
-                        EmployeeScheduledId = employee.EmployeeId,
-                        ScheduleDayId = s.ScheduleDays[dayOfWeek].ScheduleDayId,
-                        StartTime = startTime,
-                        EndTime = endTime
-                    };
+                        // Randomly select a day from the list of days not scheduled
+                        int randomDayIndex = random.Next(daysNotScheduled.Count);
+                        ScheduleDay selectedDay = daysNotScheduled[randomDayIndex];
+                        int dayOfWeek = (int)selectedDay.Day.DayOfWeek;
 
-                    // Add this shift to the schedule and update remaining hours needed
-                    s.AddEmployeeToDay(newShift);
-                    hoursNeeded -= (endTime - startTime).Hours;
+                        // Randomize start time between 7 AM and 2 PM
+                        int randomStartHour = random.Next(7, 15);
+                        DateTime startTime = selectedDay.Day.AddHours(randomStartHour);
+
+                        // Randomize end time between 3 and 6 hours later
+                        int randomEndHour = random.Next(3, 7);
+                        DateTime endTime = startTime.AddHours(randomEndHour);
+
+                        EmployeeScheduled newShift = new EmployeeScheduled
+                        {
+                            EmployeeId = employee.EmployeeId,
+                            ScheduleDayId = selectedDay.ScheduleDayId,
+                            StartTime = startTime,
+                            EndTime = endTime
+                        };
+
+                       
+                        s.AddEmployeeToDay(newShift);
+                        hoursNeeded -= (endTime - startTime).Hours;
+                    }
                 }
+
                 else // Extend an existing shift
                 {
                     // Find an existing shift that can be extended
                     List<ScheduleDay> shifts = s.GetScheduleDaysEmployeeIsScheduled(employee.EmployeeId);
-                    int randDay = random.Next(shifts.Count);
-                    if (shifts[randDay].EmployeeScheduleds.Count != 0)
+                    if (shifts.Count > 0)
                     {
-                        EmployeeScheduled existingShift = shifts[randDay].EmployeeScheduleds.FirstOrDefault(es => es.EmployeeScheduledId == employee.EmployeeId);
-
-                        if (existingShift != null)
+                        int randDay = random.Next(shifts.Count);
+                        if (shifts[randDay].EmployeeScheduleds.Count != 0)
                         {
-                            int decision2 = random.Next(2); 
+                            EmployeeScheduled existingShift = shifts[randDay].EmployeeScheduleds.FirstOrDefault(es => es.EmployeeId == employee.EmployeeId);
 
-                            if (decision2 == 0)
+                            if (existingShift != null)
                             {
-                                // Move the end time back by 1 hour
-                                existingShift.EndTime = existingShift.EndTime.AddHours(1);
-                            }
-                            else
-                            {
-                                // Move the start time forward by 1 hour
-                                existingShift.StartTime = existingShift.StartTime.AddHours(-1);
+                                int decision2 = random.Next(2);
+
+                                if (decision2 == 0)
+                                {
+                                    // Move the end time back by 1 hour
+                                    existingShift.EndTime = existingShift.EndTime.AddHours(1);
+                                }
+                                else
+                                {
+                                    // Move the start time forward by 1 hour
+                                    existingShift.StartTime = existingShift.StartTime.AddHours(-1);
+                                }
                             }
                         }
                     }
@@ -112,7 +129,7 @@ namespace ShiftGenius.Rules
 
                     var newShift = new EmployeeScheduled
                     {
-                        EmployeeScheduledId = employee.EmployeeId,
+                        EmployeeId = employee.EmployeeId,
                         ScheduleDayId = day.ScheduleDayId,
                         StartTime = shiftStart,
                         EndTime = shiftEnd

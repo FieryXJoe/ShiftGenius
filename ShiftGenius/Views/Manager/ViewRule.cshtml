@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @using ShiftGeniusLibDB.Models
+@using ShiftGeniusLibDB;
+    @model ScheduleRule
+
+    <div class="container mt-5">
+        <h1>View Rule</h1>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Rule Details</h5>
+                <ul>
+                    @if (Model.EmployeeId.HasValue)
+                    {
+                        <li>Employee: @Basic_Functions.getEmployeeByID(Model.EmployeeId.Value).Name</li>
+                    }
+                    else
+                    {
+                        <li>Employee: N/A (Organization-wide rule)</li>
+                    }
+                    <li>Minimum Hours: @Model.Rule</li>
+                    <li>Start Time: @Model.StartTime</li>
+                    <li>End Time: @Model.EndTime</li>
+                    <li>Date Created: @Model.DateCreated</li>
+                    <li>Approved: @Model.Approved</li>
+                </ul>
+            </div>
+        </div>
+
+        <a class="btn btn-secondary mt-4" asp-controller="Manager" asp-action="RuleList">Back</a>
+    </div>
+}
