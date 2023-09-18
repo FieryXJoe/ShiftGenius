@@ -1,21 +1,33 @@
-﻿@using ShiftGeniusLibDB.Models;
+﻿@using ShiftGeniusLibDB.Aggregate;
+@using ShiftGeniusLibDB.Models;
 @using ShiftGeniusLibDB;
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    var scheduleDays = (List<ScheduleDay>) Model.Schedule.ScheduleDays;
+@using System.Security.Claims;
+@using ShiftGenius.Rules;
 
-    var groupedByDayOfWeek = scheduleDays
-                                  .GroupBy(sd => sd.Day.DayOfWeek)
-                                  .OrderBy(g => (int)g.Key);
+@{
+    var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+    int userId = int.Parse(userIdClaim.Value);
+    int organizationId = Basic_Functions.getEmployeeByID(userId).OrganizationId.Value;
+
+    Schedule schedule = new Schedule(Basic_Functions.getEmployeeByID(userId).OrganizationId.Value);
+
+    RuleBuilder ruleBuilder = new RuleBuilder(organizationId, schedule); 
+    DefaultRule rule = ruleBuilder.BuildRules();
+    schedule = RuleBuilder.TryGenerateValidSchedule(schedule, rule);
+
+    var groupedByDayOfWeek = schedule.ScheduleDays 
+                              .GroupBy(sd => sd.Day.DayOfWeek)
+                              .OrderBy(g => (int)g.Key);
 }
+
 <div>
     <div style="color:#47525e;text-align:center">
         <h1>Welcome @User.Identity.Name</h1>
-        <h3>Schedule for the week of @Model.StartDate.ToShortDateString() to @Model.EndDate.ToShortDateString()</h3>
+        <h3>Schedule for the week of @schedule.StartDate.ToShortDateString() to @schedule.EndDate.ToShortDateString()</h3> 
     </div>
+    <form method="post" asp-controller="YourController" asp-action="SaveSchedule">
     <div class="d-flex justify-content-center align-items-center" style="height:60vh;">
+
         <div class="container text-white" style="background-color: #343F4B; padding: 30px; height:40vh;">
             <div class="row" style="height:85%">
                 @foreach (var group in groupedByDayOfWeek)
@@ -45,10 +57,11 @@
             </div>
         </div>
     </div>
-    <div class="text-center mt-8">
-        <a class="btn btn-success" style="margin-right:50px">Confirm</a>
-        <a class="btn btn-primary" style="margin-right:50px">Edit</a>
-        <a class="btn btn-primary" style="margin-right:50px">Regenerate</a>
-        <a class="btn btn-danger" asp-controller="Manager" asp-action="Index">Cancel</a>
-    </div>
+        <div class="text-center mt-8">
+            <button type="submit" class="btn btn-success" style="margin-right:50px">Confirm</button>
+            <a class="btn btn-primary" style="margin-right:50px">Edit</a>
+            <a class="btn btn-primary" style="margin-right:50px">Regenerate</a>
+            <a class="btn btn-danger" asp-controller="Manager" asp-action="Index">Cancel</a>
+        </div>
+    </form>
 </div>

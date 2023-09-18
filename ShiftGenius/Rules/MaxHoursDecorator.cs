@@ -28,7 +28,7 @@ namespace ShiftGenius.Rules
             schedule = s;
             DecodeJSON(json);
 
-            ruleStrategy = new EmployeeMaxHoursStrategy(employee, maxHours, employee.Organization.OrganizationId, s);
+            ruleStrategy = new EmployeeMaxHoursStrategy(employee, maxHours, employee.OrganizationId.Value, s);
         }
         public MaxHoursDecorator(Schedule s)
         {
@@ -48,7 +48,7 @@ namespace ShiftGenius.Rules
                 root.TryGetProperty("MaxHours", out JsonElement maxHoursElement))
             {
                 int employeeId = employeeIdElement.GetInt32();
-                int maxHours = maxHoursElement.GetInt32();
+                maxHours = maxHoursElement.GetInt32();
 
                 employee = Basic_Functions.getEmployeeByID(employeeId);
 

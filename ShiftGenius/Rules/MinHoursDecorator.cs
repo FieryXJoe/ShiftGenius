@@ -28,7 +28,7 @@ namespace ShiftGenius.Rules
             DecodeJSON(json);
             schedule = s;
 
-            ruleStrategy = new EmployeeMinHoursStrategy(employee, minHours, employee.Organization.OrganizationId, s);
+            ruleStrategy = new EmployeeMinHoursStrategy(employee, minHours, employee.OrganizationId.Value, s);
         }
 
         public MinHoursDecorator(Schedule s) 
@@ -50,8 +50,8 @@ namespace ShiftGenius.Rules
                 root.TryGetProperty("MinHours", out JsonElement minHoursElement))
             {
                 int employeeId = employeeIdElement.GetInt32();
-                int minHours = minHoursElement.GetInt32();
 
+                minHours = minHoursElement.GetInt32();
                 employee = Basic_Functions.getEmployeeByID(employeeId);
 
                 return $"EmployeeID: {employeeId}, MinHours: {minHours}";

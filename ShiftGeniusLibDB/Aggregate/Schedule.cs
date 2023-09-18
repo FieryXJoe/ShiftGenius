@@ -32,7 +32,12 @@ namespace ShiftGeniusLibDB.Aggregate
             {
                 var existingScheduleDays = context.ScheduleDays.Where(sd => sd.OrganizationId == organizationId && sd.Day >= startDate && sd.Day <= endDate).ToList();
                 var existingScheduleDaysDates = existingScheduleDays.Select(sd => sd.Day).ToList();
-                var daysToCreate = Enumerable.Range(0, 1 + endDate.Subtract(startDate).Days).Select(offset => startDate.AddDays(offset)).Where(d => !existingScheduleDaysDates.Contains(d)).ToList();
+                var daysToCreate = Enumerable.Range(0, endDate.Subtract(startDate).Days)
+                             .Select(offset => startDate.AddDays(offset))
+                             .Where(d => !existingScheduleDaysDates.Contains(d))
+                             .ToList();
+
+
 
                 foreach (var day in daysToCreate)
                 {
@@ -50,7 +55,7 @@ namespace ShiftGeniusLibDB.Aggregate
             }
         }
 
-        public Schedule(int organizationId) : this(organizationId, GetNextSaturday(), GetNextSaturday().AddDays(7))
+        public Schedule(int organizationId) : this(organizationId, GetNextSaturday(), GetNextSaturday().AddDays(6))
         {}
 
         private static DateTime GetNextSaturday()
@@ -67,11 +72,11 @@ namespace ShiftGeniusLibDB.Aggregate
 
         public void AddEmployeeToDay(EmployeeScheduled employeeScheduled)
         {
-            var targetDay = ScheduleDays.FirstOrDefault(day => day.Day == employeeScheduled.StartTime.Date && day.OrganizationId == OrganizationId);
+            var targetDay = ScheduleDays.FirstOrDefault(day => day.Day == employeeScheduled.StartTime.Date);
 
             if (targetDay == null)
             {
-                throw new InvalidOperationException("The specified day is not in this schedule or doesn't match the organization.");
+                throw new InvalidOperationException("The specified day is not in this schedule.");
             }
 
             targetDay.EmployeeScheduleds.Add(employeeScheduled);

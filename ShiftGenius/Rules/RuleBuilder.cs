@@ -130,5 +130,45 @@ namespace ShiftGenius.Rules
 
             return ruleType;
         }
+
+        public static Schedule TryGenerateValidSchedule(Schedule schedule, DefaultRule rootRule, int enforcementRetries = 3, int generationRetries = 3)
+        {
+            for (int generationAttempt = 0; generationAttempt < generationRetries; generationAttempt++)
+            {
+                RuleComponent currentRule = rootRule;
+                while (currentRule != null)
+                {
+                    schedule = currentRule.EnforceRules(schedule);
+                    currentRule = currentRule.ruleComponent; // Traverse down the decorator chain
+                }
+                // Try to validate the schedule
+                /**
+                for (int enforcementAttempt = 0; enforcementAttempt < enforcementRetries; enforcementAttempt++)
+                {
+                    bool allRulesValid = true;
+                    currentRule = rootRule;
+
+                    while (currentRule != null)
+                    {
+                        if (!currentRule.CheckSchedule(schedule))
+                        {
+                            // If a rule fails, enforce it again
+                            schedule = currentRule.EnforceRules(schedule);
+                            allRulesValid = false;
+                        }
+                        currentRule = currentRule.ruleComponent; // Traverse down the decorator chain
+                    }
+
+                    if (allRulesValid)
+                    {
+                        return schedule;
+                    }
+                }
+                // If we reach this point, we were unable to generate a valid schedule, so reset it
+                schedule.Reset();
+                */
+            }
+            return schedule;
+        }
     }
 }
