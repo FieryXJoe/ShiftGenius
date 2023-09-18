@@ -1,38 +1,50 @@
-﻿@model ManagerTimeOffRequestsViewModel
+﻿@model ShiftGenius.Models.ManagerTimeOffRequestsViewModel
 
 <div>
     <h1>Employee Time Off Requests</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Employee Name</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Type of Time Off</th>
-                <th>Decision</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var request in Model.TimeOffRequests)
-            {
+    <form method="post" action="@Url.Action("ProcessTimeOffRequests", "Manager")">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@request.EmployeeName</td>
-                    <td>@request.StartDate</td>
-                    <td>@request.EndDate</td>
-                    <td>@request.TypeOfTimeOff</td>
-                    <td>
-                        <select name="Decision">
-                            <option value="Approve">Approve</option>
-                            <option value="Deny">Deny</option>
-                        </select>
-                    </td>
+                    <th>Employee ID</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Type</th>
+                    <th>Request Date</th>
+                    <th>Decision</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var request in Model.TimeOffRequests)
+                {
+                    <tr>
+                        <td>@request.EmployeeID</td>
+                        <td>@request.StartDate</td>
+                        <td>@request.EndDate</td>
+                        <td>@request.Type</td>
+                        <td>@request.RequestDate</td>
+                        <td>
+                            <select name="Status">
+                                <option value="Approve">Approve</option>
+                                <option value="Deny">Deny</option>
+                            </select>
+                        </td>
+                        <td>
+                            <form method="post" action="@Url.Action("DeleteTimeOffRequest", "Manager")">
+                                @Html.Hidden("requestId", request.RequestID)
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
 
-    <div>
-        <a href="@Url.Action("Index", "Manager")" class="btn btn-secondary">Back</a>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
+
+            </tbody>
+        </table>
+
+        <div>
+            <a href="@Url.Action("Index", "Manager")" class="btn btn-secondary">Back</a>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
 </div>

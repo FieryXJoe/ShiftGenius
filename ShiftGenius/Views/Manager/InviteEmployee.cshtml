@@ -6,6 +6,9 @@
     <div class="form-group">
         <label for="inputEmail">Email Address</label>
         <input type="email" class="form-control" id="inputEmail" asp-for="EmailAddress" required>
+        <span asp-validation-for="EmailAddress" class="text-danger"></span>
     </div>
+    <a href="@Url.Action("Index", "Manager")" class="btn btn-secondary">Back</a>
     <button type="submit" class="btn btn-primary">Send Invitation</button>
+
 </form>

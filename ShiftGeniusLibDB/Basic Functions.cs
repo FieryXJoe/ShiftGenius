@@ -1,3 +1,4 @@
+
 ﻿using Microsoft.EntityFrameworkCore;
 using ShiftGeniusLibDB.Models;
 using System;
